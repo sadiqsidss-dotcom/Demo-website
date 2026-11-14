@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZIR | Worn with certainty</title>
+<meta property="og:title" content="ZIR | Worn with certainty"><meta property="og:description" content="Modest abayas with soft, beautiful details. Sizes 50 to 60, every piece 250 SAR."><meta property="og:image" content="img/crops/hero-polka.jpg"><meta name="description" content="ZIR modest abayas with soft, beautiful details. Sizes 50 to 60, every piece 250 SAR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Poppins:wght@300;400;500&family=Readex+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--oat:#F7EFE6;--pink:#EBCFC2;--blush:#F6DDD6;--rose:#E7B8B0;--mocha:#B98366;--mocha-d:#8A5A45;--gold:#D4A94E;--ink:#4A3428;--shadow:rgba(138,90,69,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,"Readex Pro",sans-serif;background:var(--oat);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+.ar{font-family:"Readex Pro",sans-serif;direction:rtl;unicode-bidi:isolate}
+.serif,h1,h2,h3{font-family:Fraunces,serif;font-weight:400;letter-spacing:-.015em;line-height:1.05}
+em{font-style:italic;color:var(--mocha-d)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--mocha-d);margin-bottom:12px}
+.btn{display:inline-block;background:var(--mocha);color:#fff;padding:13px 30px;border-radius:999px;font-size:14px;letter-spacing:.04em;box-shadow:0 10px 24px var(--shadow);transition:.25s}
+.btn:hover{background:var(--mocha-d);transform:translateY(-2px)}
+.btn.o{background:transparent;color:var(--mocha-d);border:1.5px solid var(--mocha);box-shadow:none}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.sp{position:absolute;color:var(--gold);line-height:1;pointer-events:none;animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
+
+/* nav */
+nav{position:fixed;z-index:40;top:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:30px;background:rgba(247,239,230,.8);backdrop-filter:blur(12px);border:1px solid rgba(185,131,102,.25);border-radius:999px;padding:8px 10px 8px 26px;font-size:13px;transition:transform .4s;white-space:nowrap}
+nav .lg{font-family:Fraunces,serif;font-style:italic;font-size:26px;color:var(--mocha-d);line-height:1}
+nav .m{display:flex;gap:22px}nav .m a{opacity:.75}nav .m a:hover{opacity:1;color:var(--mocha-d)}
+nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
+
+/* hero (pinned) */
+.heroS{position:relative;height:380vh;background:linear-gradient(var(--oat),var(--pink))}
+.hero{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,var(--blush),var(--oat) 70%)}
+.hero .big{position:absolute;z-index:1;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;will-change:transform;margin-top:-4vh}
+.arch{position:absolute;z-index:2;left:50%;top:50%;width:min(340px,70vw);height:min(470px,56vh);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:width,height,border-radius}
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;will-change:opacity,transform}
+.hero .ph{position:absolute;z-index:3;left:0;right:0;bottom:7vh;text-align:center;padding:0 20px;opacity:0;will-change:opacity,transform,filter}
+.hero .ph h1{font-size:clamp(30px,4.6vw,62px);color:var(--ink)}
+.hero .ph.light h1{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.hero .ph p{font-size:14px;margin-top:8px;opacity:.8}
+.hero .side{position:absolute;z-index:3;top:50%;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d);writing-mode:vertical-rl;opacity:.7}
+.hero .side.l{left:26px;transform:translateY(-50%) rotate(180deg)}.hero .side.r{right:26px;transform:translateY(-50%)}
+.hint{position:absolute;z-index:3;top:86px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d)}
+
+/* ribbon */
+.rib{background:var(--mocha-d);color:var(--oat);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:Fraunces,serif;font-style:italic;font-size:22px}
+.rib div{display:inline-flex;gap:34px;will-change:transform}
+.rib i{color:var(--gold);font-style:normal}
+
+/* intro */
+.say{position:relative;overflow:hidden;padding:90px 0 70px;text-align:center;background:var(--pink)}
+.say h2{font-size:clamp(34px,5.2vw,72px);max-width:880px;margin:0 auto;position:relative;z-index:2}
+.say .ar{color:var(--mocha-d);margin-top:16px;font-size:18px;position:relative;z-index:2}
+.w{display:inline-block;will-change:opacity,filter}
+.fl{position:absolute;z-index:1;border-radius:999px 999px 20px 20px;overflow:hidden;box-shadow:0 18px 40px var(--shadow),0 0 0 6px #fff;will-change:transform}
+.fl img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.fl.a{left:5%;top:60px;width:150px;height:210px}.fl.b{right:5%;top:130px;width:130px;height:180px;border-radius:999px}.fl.c{left:14%;bottom:30px;width:104px;height:104px;border-radius:50%}.fl.d{right:15%;bottom:20px;width:120px;height:160px}
+
+/* sticky stack */
+.stackS{position:relative;height:420vh;background:var(--oat)}
+.stack{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(18px,4vw,60px);padding:0 4vw;overflow:hidden}
+.stack .box{position:relative;width:min(320px,36vw);aspect-ratio:1/1.35;border-radius:999px 999px 26px 26px;overflow:hidden;background:var(--pink);box-shadow:0 28px 54px var(--shadow),0 0 0 9px #fff,0 0 0 10px var(--rose)}
+.stack .box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 10%;will-change:transform}
+.stack .L,.stack .R{position:relative;font-family:Fraunces,serif;font-style:italic;font-size:clamp(24px,3.6vw,52px);line-height:1.05;height:2.4em;color:var(--mocha-d)}
+.stack .L{text-align:end}
+.stack .L span,.stack .R span{position:absolute;inset:0;display:flex;align-items:center;opacity:0;will-change:opacity,transform,filter}
+.stack .L span{justify-content:flex-end}.stack .R span{color:var(--ink)}
+.stack .cnt{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mocha-d)}
+
+/* button motif */
+.care{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,60px);padding:30px 20px 90px;background:var(--oat);overflow:hidden}
+.care .t{font-family:Fraunces,serif;font-style:italic;font-size:clamp(24px,3.6vw,50px);color:var(--mocha-d);max-width:300px;line-height:1.1;will-change:opacity,transform}
+.care .t.r{color:var(--ink)}
+.care .btnimg{width:clamp(170px,22vw,290px);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 24px 50px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:transform}
+.care .btnimg img{width:100%;height:100%;object-fit:cover}
+
+/* details */
+.det{position:relative;background:var(--pink);padding:80px 0 90px;border-radius:44px 44px 0 0}
+.det h2{font-size:clamp(34px,4.6vw,62px);text-align:center;margin-bottom:46px}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border-radius:200px 200px 28px 28px;padding:22px 22px 28px;box-shadow:0 14px 34px var(--shadow);text-align:center;transition:transform .35s}
+.card:hover{transform:translateY(-8px) rotate(-.6deg)}
+.card .im{aspect-ratio:1/1.1;border-radius:200px 200px 20px 20px;overflow:hidden;background:var(--blush)}
+.card .im img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transition:transform .8s}.card:hover .im img{transform:scale(1.07)}
+.card .g4{display:grid;grid-template-columns:1fr 1fr;height:100%}.card .g4 img{aspect-ratio:1;height:100%}
+.card h3{font-size:25px;margin:18px 0 6px}.card p{font-size:13px;opacity:.75;max-width:240px;margin:0 auto}
+.c3>.rv:nth-child(2){transition-delay:.12s;margin-top:34px}.c3>.rv:nth-child(3){transition-delay:.24s}
+
+/* expanding full */
+.fullS{position:relative;height:200vh;background:var(--pink)}
+.full{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;text-align:center;color:#fff;clip-path:inset(12% 24% round 999px 999px 28px 28px);will-change:clip-path}
+.full img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.full::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(74,52,40,.15),rgba(74,52,40,.55))}
+.full h2{position:relative;z-index:1;font-size:clamp(30px,4.6vw,66px);max-width:860px;padding:0 24px;text-shadow:0 4px 30px rgba(0,0,0,.3)}
+
+/* pieces */
+.two{padding:80px 0 60px;background:var(--oat);position:relative}
+.two h2{font-size:clamp(34px,5vw,68px);text-align:center;margin-bottom:46px}
+.d2{display:grid;grid-template-columns:1fr 1fr;gap:34px;max-width:880px;margin:0 auto}
+.d2>div:nth-child(2){margin-top:70px}
+.d2 .im{aspect-ratio:1/1.2;border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 22px 46px var(--shadow),0 0 0 8px #fff;clip-path:inset(100% 0 0 0 round 999px 999px 28px 28px);transition:clip-path 1.2s cubic-bezier(.2,.7,.2,1)}
+.d2 .in .im{clip-path:inset(0 round 999px 999px 28px 28px)}
+.d2 .im img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.25);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}.d2 .in .im img{transform:none}
+.d2 .tx{text-align:center;margin-top:26px}.d2 small{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mocha-d)}
+.d2 h3{font-size:30px;margin:6px 0}.d2 p{font-size:14px;opacity:.78;max-width:300px;margin:0 auto 12px}
+
+/* stats */
+.stats{padding:30px 0 90px;background:var(--oat)}
+.s3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:900px;margin:0 auto}
+.s3>div{background:var(--blush);border-radius:999px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 14px 30px var(--shadow);padding:14px}
+.s3>div:nth-child(2){background:var(--pink);transform:translateY(24px)}
+.s3 b{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:clamp(34px,5.4vw,70px);color:var(--mocha-d);line-height:1}
+.s3 span{font-size:12px;opacity:.8;margin-top:6px}
+.stats .foot{text-align:center;margin-top:64px}.stats .foot p{margin-bottom:16px;opacity:.8}
+
+/* quote */
+.quote{background:var(--mocha-d);color:var(--oat);text-align:center;padding:80px 0;position:relative;overflow:hidden}
+.quote q{display:block;font-family:Fraunces,serif;font-style:italic;font-size:clamp(26px,3.8vw,52px);line-height:1.15;max-width:860px;margin:0 auto;quotes:none}
+.quote q span{color:var(--gold)}
+.quote .ar{margin-top:18px;opacity:.8}
+
+/* faq */
+.faq{padding:90px 0 100px;background:var(--oat)}
+.faq .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+.faq h2{font-size:clamp(34px,4.4vw,58px);margin-bottom:14px}.faq .wrap>div>p{font-size:14px;opacity:.75;max-width:300px}
+details{background:#fff;border-radius:26px;padding:18px 24px;margin-bottom:12px;box-shadow:0 8px 22px var(--shadow)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:15px}
+summary::-webkit-details-marker{display:none}summary::after{content:"✦";color:var(--gold);transition:transform .4s}
+details[open] summary::after{transform:rotate(135deg)}
+details p{font-size:14px;opacity:.8;margin-top:10px;max-width:480px}
+
+footer{background:var(--ink);color:#E9DACB;padding:70px 0 26px;text-align:center;position:relative;overflow:hidden}
+footer .big{font-family:Fraunces,serif;font-style:italic;font-size:clamp(110px,24vw,340px);line-height:.8;color:var(--oat);letter-spacing:-.04em}
+footer .tag{margin:14px 0 34px;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+.fr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;font-size:12px;opacity:.75;max-width:1180px;margin:0 auto 0;padding-inline:28px}
+footer a{color:var(--gold)}
+
+@media(max-width:860px){
+  .wrap{padding:0 20px}nav{gap:14px;padding:7px 8px 7px 18px}nav .m{display:none}
+  .hero .side{display:none}.hero .ph{bottom:5vh}
+  .fl.a{left:-20px;width:100px;height:140px;top:30px}.fl.b{right:-14px;width:90px;height:120px;top:80px}.fl.c,.fl.d{display:none}
+  .say{padding:70px 0 50px}.say h2{padding-top:130px}
+  .stack{padding:0 12px;gap:10px}.stack .box{width:38vw}
+  .care{flex-direction:column;padding:20px 20px 70px;text-align:center}.care .t{max-width:none}
+  .c3,.faq .wrap{grid-template-columns:1fr}.c3>.rv:nth-child(2){margin-top:0}
+  .d2{grid-template-columns:1fr}.d2>div:nth-child(2){margin-top:0}
+  .full{clip-path:inset(8% 6% round 999px 999px 24px 24px)}
+  .s3{gap:8px}.s3>div{padding:4px;min-width:0}.s3 b{font-size:clamp(22px,7vw,32px)}.s3 span{font-size:10px}.s3>div:nth-child(2){transform:none}
+  .det{padding:60px 0 70px}.two{padding:60px 0 40px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav"><span class="lg">zir</span><span class="m"><a href="#pieces">Pieces</a><a href="#details">Details</a><a href="#faq">Questions</a></span><a class="btn" href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></nav>
+
+<section class="heroS" id="heroS"><div class="hero" id="hero">
+  <div class="big" id="big">zir</div>
+  <span class="sp" style="top:18%;left:22%;font-size:26px">✦</span><span class="sp" style="top:30%;right:20%;font-size:18px;animation-delay:.8s">✦</span><span class="sp" style="bottom:26%;left:16%;font-size:20px;animation-delay:1.6s">✦</span><span class="sp" style="top:62%;right:15%;font-size:30px;animation-delay:2.2s">✦</span>
+  <div class="side l">Modest abayas</div><div class="side r">Worn with certainty</div>
+  <div class="hint">Scroll</div>
+  <div class="arch" id="arch">
+    <img src="img/crops/hero-polka.jpg" alt="ZIR polka abaya"><img src="img/crops/hero-floral.jpg" alt="Spring floral abaya"><img src="img/crops/hero-block.jpg" alt="Colour-block abaya"><img src="img/crops/hero-linen.jpg" alt="Yellow linen abaya, seen from behind" style="object-position:50% 72%">
+  </div>
+  <div class="ph"><h1>Details that <em>complete</em> her.</h1><p class="ar">تفاصيل تكمّل طلّتك</p></div>
+  <div class="ph"><h1>Sizes <em>50 to 60.</em></h1><p>More sizes, so every woman finds hers.</p></div>
+  <div class="ph"><h1>One price. <em>250 SAR.</em></h1><p>Every abaya, no surprises.</p></div>
+  <div class="ph light"><h1>Worn with <em style="color:#fff">certainty.</em></h1><p class="ar">زر</p></div>
+</div></section>
+
+<div class="rib"><div id="rib1"><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i></div></div>
+
+<section class="say" id="say">
+  <div class="fl a" data-s=".08"><img src="img/crops/fl-cuff.jpg" alt=""></div>
+  <div class="fl b" data-s="-.05"><img src="img/crops/fl-gfloral.jpg" alt=""></div>
+  <div class="fl c" data-s=".12"><img src="img/crops/fl-linen.jpg" alt=""></div>
+  <div class="fl d" data-s="-.09"><img src="img/crops/fl-pin.jpg" alt=""></div>
+  <span class="sp" style="top:40px;left:40%;font-size:22px">✦</span><span class="sp" style="bottom:50px;right:38%;font-size:18px;animation-delay:1.2s">✦</span>
+  <div class="wrap"><div class="eyebrow">For her</div>
+  <h2 id="split">You decide what she wears. We take care of the details.</h2>
+  <p class="ar rv">أنتِ تختارين، وإحنا نهتم بالتفاصيل.</p></div>
+</section>
+
+<section class="stackS" id="stackS"><div class="stack">
+  <div class="L"><span>Everyday</span><span>Spring</span><span>Linen,</span><span>Polka,</span></div>
+  <div class="box"><img src="img/crops/st-blazer.jpg" alt=""><img src="img/crops/st-floral.jpg" alt=""><img src="img/crops/st-linen.jpg" alt=""><img src="img/crops/st-polka.jpg" alt=""></div>
+  <div class="R"><span>cuts that work.</span><span>flowers, worn.</span><span>for warm days.</span><span>for her day.</span></div>
+  <div class="cnt">THE EDIT</div>
+</div></section>
+
+<section class="care" id="care">
+  <div class="t" id="c1">The small button</div>
+  <div class="btnimg" id="cz"><img src="img/home-button.jpg" alt="ZIR button"></div>
+  <div class="t r" id="c2">that completes her look.</div>
+</section>
+
+<section class="det" id="details"><div class="wrap">
+  <div class="eyebrow" style="text-align:center">The details</div>
+  <h2 class="rv">Soft in every <em>detail.</em></h2>
+  <div class="c3">
+    <div class="card rv"><div class="im"><img src="img/crops/cd-polka.jpg" alt=""></div><h3>Every detail fits</h3><p>Sleeves, cuffs, buttons and prints. Zoom in on any piece and check.</p></div>
+    <div class="card rv"><div class="im"><div class="g4"><img src="img/crops/g-pin.jpg" alt=""><img src="img/crops/g-blazer.jpg" alt=""><img src="img/crops/g-gfloral.jpg" alt=""><img src="img/crops/g-floral.jpg" alt=""></div></div><h3>Sizes 50 to 60</h3><p>More sizes, so every woman finds hers.</p></div>
+    <div class="card rv"><div class="im"><img src="img/crops/cd-block.jpg" alt=""></div><h3>One price</h3><p>Every abaya is 250 SAR. Choose your size and order from the store.</p></div>
+  </div>
+</div></section>
+
+<section class="fullS" id="fullS"><div class="full" id="full"><img src="img/home-collection.jpg" alt="" style="object-position:50% 40%"><h2 id="split2">From the office to the majlis. One abaya for every day.</h2></div></section>
+
+<section class="two" id="pieces"><div class="wrap">
+  <div class="eyebrow" style="text-align:center">The collection</div>
+  <h2 class="rv">Choose it <em>yourself.</em></h2>
+  <div class="d2">
+    <div class="rv"><div class="im"><img src="img/crops/pc-cuff.jpg" alt=""></div><div class="tx"><small>Everyday</small><h3>Clean, practical cuts</h3><p>Blazer, pinstripe, grey cuff and colour-block. For work days and long days.</p><a class="btn o" href="https://zirabaya.com/عباية-مفتوحة/c165201636" target="_blank" rel="noopener">See everyday</a></div></div>
+    <div class="rv"><div class="im"><img src="img/crops/pc-gfloral.jpg" alt=""></div><div class="tx"><small>Statement</small><h3>Florals and polka</h3><p>Spring flowers, grey florals and the polka abaya. For when you want to be seen.</p><a class="btn o" href="https://zirabaya.com/عباية-مفتوحة/c165201636" target="_blank" rel="noopener">See statement</a></div></div>
+  </div>
+</div></section>
+
+<section class="stats"><div class="wrap">
+  <div class="s3 rv"><div><b>250</b><span>SAR for every abaya</span></div><div><b>50–60</b><span>sizes in every design</span></div><div><b>8</b><span>new designs</span></div></div>
+  <div class="foot rv"><p>Pick a design, pick your size and order. That is the whole process.</p><a class="btn" href="https://zirabaya.com" target="_blank" rel="noopener">Shop now</a></div>
+</div></section>
+
+<section class="quote">
+  <span class="sp" style="top:30px;left:12%;font-size:24px">✦</span><span class="sp" style="bottom:36px;right:14%;font-size:30px;animation-delay:1s">✦</span>
+  <div class="wrap"><q class="rv"><span>"ZIR"</span> is the small button that joins the whole piece, the detail that completes you.</q><p class="ar rv">«زر» اسم جاي من الزر الصغير اللي يجمع القطعة كلها.</p></div>
+</section>
+
+<section class="faq" id="faq"><div class="wrap">
+  <div><div class="eyebrow">Questions</div><h2>Good to <em>know.</em></h2><p>Quick answers about sizes, price and ordering.</p></div>
+  <div>
+    <details><summary>What sizes do you have?</summary><p>Every design is available in sizes 50 to 60.</p></details>
+    <details><summary>How much is an abaya?</summary><p>Every ZIR abaya is 250 SAR.</p></details>
+    <details><summary>How do I order?</summary><p>Choose a design and your size, then order from the ZIR store.</p></details>
+    <details><summary>What does ZIR mean?</summary><p>"ZIR" is Arabic for the small button that joins the whole piece, the detail that completes your look.</p></details>
+    <details><summary>Where can I follow ZIR?</summary><p>On Instagram: zir_abaya.</p></details>
+  </div>
+</div></section>
+
+<footer><span class="sp" style="top:50px;left:18%;font-size:26px">✦</span><span class="sp" style="top:90px;right:16%;font-size:20px;animation-delay:1.4s">✦</span>
+  <div class="big">zir</div><div class="tag">Worn with certainty · <span class="ar">زر</span></div>
+  <div class="fr"><span>© 2026 ZIR</span><span><a href="https://zirabaya.com" target="_blank" rel="noopener">zirabaya.com</a> · <a href="https://instagram.com/zir_abaya" target="_blank" rel="noopener">Instagram</a></span></div></footer>
+
+<script>
+(function(){
+const $=(q,c=document)=>c.querySelector(q),$$=(q,c=document)=>[...c.querySelectorAll(q)];
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+$$('.rv').forEach(n=>io.observe(n));
+
+function split(el){const t=el.innerHTML.trim().split(/\s+/);el.innerHTML=t.map(w=>'<span class="w">'+w+'</span>').join(' ');return $$('.w',el)}
+const sp1=split($('#split')),sp2=split($('#split2'));
+$$('.w').forEach(w=>{w.style.opacity=.15;w.style.filter='blur(8px)'});
+function words(ws,p){const n=ws.length;ws.forEach((w,i)=>{const t=cl(p*(n+2)-i);w.style.opacity=.15+.85*t;w.style.filter='blur('+(8*(1-t))+'px)'})}
+
+const heroS=$('#heroS'),hero=$('#hero'),arch=$('#arch'),aimgs=$$('img',arch),phs=$$('.ph',hero),big=$('#big'),hint=$('.hint');
+const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img');
+const fullS=$('#fullS'),full=$('#full'),fimg=$('img',full);
+const care=$('#care'),cz=$('#cz'),c1=$('#c1'),c2=$('#c2'),nav=$('#nav'),rib=$('#rib1'),say=$('#say');
+const prog=el=>{const r=el.getBoundingClientRect();return cl(-r.top/(r.height-innerHeight))};
+let lastY=0,ticking=false;
+
+function frame(){
+  ticking=false;const y=scrollY,V=innerHeight,W=innerWidth;
+
+  /* hero */
+  const p=prog(heroS),cs=[.12,.32,.52,.74];
+  phs.forEach((el,i)=>{const d=Math.abs(p-cs[i]);
+    const a=i===3?cl((p-.62)/.08)*(1-cl((p-.95)/.05)):cl(1-(d-.07)/.07);
+    el.style.opacity=a;el.style.filter='blur('+((1-a)*12)+'px)';el.style.transform='translateY('+((p<cs[i]?1:-1)*(1-a)*28)+'px)'});
+  aimgs.forEach((el,i)=>{let a=i===0?(p<.2?1:cl(1-(p-.2)/.1)):cl(1-Math.abs(p-cs[i])/.12);if(i===3&&p>cs[3])a=1;
+    el.style.opacity=a;el.style.transform='scale('+(1.2-p*.2)+')'});
+  /* arch grows to full screen at the end */
+  const g=cl((p-.8)/.2),ge=g*g*(3-2*g);
+  const bw=Math.min(340,W*.7),bh=Math.min(470,V*.56);
+  arch.style.width=lerp(bw,W,ge)+'px';arch.style.height=lerp(bh,V,ge)+'px';
+  arch.style.borderRadius=lerp(999,0,ge)+'px '+lerp(999,0,ge)+'px '+lerp(28,0,ge)+'px '+lerp(28,0,ge)+'px';
+  arch.style.transform='translate(-50%,'+lerp(-52,-50,ge)+'%) rotate('+(Math.sin(p*9)*2.2*(1-ge))+'deg)';
+  arch.style.boxShadow=ge>.5?'none':'';
+  big.style.transform='translateY('+(p*-14)+'vh) scale('+(1+p*.25)+')';big.style.opacity=1-ge;
+  hint.style.opacity=cl(1-p*14);
+
+  /* headline words */
+  words(sp1,cl((V*.92-$('#split').getBoundingClientRect().top)/(V*.5)));
+
+  /* floating photos parallax */
+  const sy=say.getBoundingClientRect().top;
+  $$('.fl').forEach(f=>{f.style.transform='translateY('+(sy*parseFloat(f.dataset.s))+'px) rotate('+(sy*parseFloat(f.dataset.s)*.04)+'deg)'});
+
+  /* stack */
+  const N=Ls.length,q=cl(prog(stackS)*N,.5,N-.5);
+  Ls.forEach((el,k)=>{const d=q-(k+.5),a=cl((.62-Math.abs(d))/.24);
+    [el,Rs[k]].forEach(n=>{n.style.opacity=a;n.style.transform='translateY('+(d*-38)+'px)';n.style.filter='blur('+((1-a)*8)+'px)'})});
+  Bs.forEach((im,k)=>{const t=k===0?1:cl((q-(k-.12))/.5);im.style.transform='translateY('+((1-t)*104)+'%)';im.style.zIndex=k});
+
+  /* button motif */
+  const rc=care.getBoundingClientRect(),m=cl((V-rc.top)/(V*.7));
+  cz.style.transform='rotate('+(y*.18)+'deg) scale('+(.6+.4*m)+')';
+  c1.style.opacity=c2.style.opacity=cl((m-.25)*2.4);
+  c1.style.transform='translateX('+((1-cl((m-.25)*2.4))*-50)+'px)';c2.style.transform='translateX('+((1-cl((m-.25)*2.4))*50)+'px)';
+
+  /* ribbon drift */
+  rib.style.transform='translateX('+(-(y*.35)%900)+'px)';
+
+  /* expanding full-bleed */
+  const f=prog(fullS),e=cl(f*2.2);
+  const wd=W<860?[8,6]:[12,24];
+  full.style.clipPath='inset('+(wd[0]*(1-e))+'% '+(wd[1]*(1-e))+'% round '+(999*(1-e))+'px '+(999*(1-e))+'px '+(28*(1-e))+'px '+(28*(1-e))+'px)';
+  fimg.style.transform='scale('+(1.3-.3*e)+')';
+  words(sp2,cl((f-.25)/.45));
+
+  nav.style.transform=(y>lastY&&y>300)?'translate(-50%,-140%)':'translateX(-50%)';lastY=y;
+}
+function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+if(reduce){$$('.w').forEach(w=>{w.style.opacity=1;w.style.filter='none'});$$('.rv').forEach(n=>n.classList.add('in'))}
+else{addEventListener('scroll',req,{passive:true});addEventListener('resize',req);frame()}
+
+const io2=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;io2.unobserve(x.target);
+  const el=x.target,txt=el.textContent,m=txt.match(/^\d+/);if(!m||reduce)return;const to=+m[0],suf=txt.slice(m[0].length),t0=performance.now();
+  (function s(n){const k=cl((n-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+suf;if(k<1)requestAnimationFrame(s)})(t0)}),{threshold:.6});
+$$('.s3 b').forEach(n=>io2.observe(n));
+})();
+</script>
+</body>
+</html>
