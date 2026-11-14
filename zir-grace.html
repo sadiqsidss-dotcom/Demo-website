@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZIR | You decide what she wears</title>
+<meta name="description" content="ZIR abayas in sizes 50 to 60, every piece 250 SAR. Small details, worn with certainty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#000;--soft:#6b6b6b;--line:#e4e4e4;--mocha:#B98366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter Tight","Readex Pro",sans-serif;color:#000;background:#fff;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+.ar{font-family:"Readex Pro",sans-serif;direction:rtl;unicode-bidi:isolate}
+.wrap{max-width:1344px;margin:0 auto;padding:0 48px}
+h1,h2,h3{font-weight:500;letter-spacing:-.03em;line-height:1.05}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+
+nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:18px 48px;color:#fff;mix-blend-mode:difference;font-size:14px}
+nav .lg{font-size:22px;font-weight:600;letter-spacing:.04em}
+nav .m{display:flex;gap:28px}
+.pill{display:inline-block;background:#000;color:#fff;border-radius:999px;padding:10px 20px;font-size:13px}
+.pill.w{background:#fff;color:#000}
+
+.hero{position:relative;height:100vh;min-height:620px;background:#000;overflow:hidden;color:#fff}
+.hero .strip{position:absolute;inset:0;display:flex;opacity:.55}
+.hero .strip img{flex:1;min-width:0;height:100%;object-fit:cover;object-position:50% 20%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000)}
+.hero .t{position:absolute;z-index:2;inset:auto 48px 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.hero h1{font-size:clamp(54px,10vw,150px)}
+.hero p{max-width:300px;font-size:15px;opacity:.85}
+
+.say{padding-block:230px 120px;text-align:center}
+.say h2{font-size:clamp(34px,5vw,68px);max-width:900px;margin:0 auto}
+.say .ar{color:var(--soft);margin-top:20px;font-size:18px}
+.sq{width:min(260px,60vw);aspect-ratio:1;margin:150px auto 0;overflow:hidden}
+.sq img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+
+.care{display:flex;align-items:center;justify-content:center;gap:28px;padding:150px 20px;font-size:clamp(22px,3vw,40px);letter-spacing:-.02em;text-align:center;flex-wrap:wrap}
+.care b{font-size:clamp(90px,15vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8}
+
+.dots{background:#050505 radial-gradient(#222 1px,transparent 1px) 0 0/22px 22px;color:#fff;padding:110px 0 90px}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.c3 h3{font-size:24px;margin-bottom:22px}
+.c3 .box{aspect-ratio:1/1.05;overflow:hidden;background:#111}
+.c3 .box img{width:100%;height:100%;object-fit:cover}
+.c3 .g4{display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%}.c3 .g4 img{aspect-ratio:1;height:100%}
+.c3 p{font-size:13px;color:#999;margin-top:14px;max-width:260px}
+.dots .mid{text-align:center;margin-top:70px}
+
+.full{position:relative;height:90vh;min-height:520px;overflow:hidden;display:grid;place-items:center;text-align:center;color:#fff}
+.full img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.full::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
+.full h2{position:relative;z-index:1;font-size:clamp(28px,4vw,56px);max-width:820px;padding:0 24px}
+
+.two{padding-block:110px 90px}
+.two h2{font-size:clamp(36px,5vw,68px);margin-bottom:44px}
+.d2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.d2 .im{aspect-ratio:1/1.05;overflow:hidden}.d2 .im img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.d2 small{display:block;font-size:11px;color:var(--soft);margin:12px 0 4px}
+.d2 h3{font-size:28px;margin-bottom:8px}.d2 p{font-size:14px;color:var(--soft);max-width:330px}
+.d2 a.l{display:inline-block;font-size:13px;margin-top:10px;border-bottom:1px solid #000}
+
+.stats{padding-block:70px 100px}
+.stats h2{font-size:clamp(36px,5vw,68px);margin-bottom:70px}
+.s3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.s3>div{border-top:1px solid #000;padding-top:14px}
+.s3 b{display:block;font-weight:500;font-size:clamp(34px,4vw,52px);letter-spacing:-.03em}
+.s3 span{color:var(--soft);font-size:14px}
+.stats .foot{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:60px;color:var(--soft);font-size:14px}
+
+.quote{padding-block:40px 120px}
+.quote blockquote{font-size:clamp(24px,3vw,40px);letter-spacing:-.02em;max-width:820px;line-height:1.2}
+.quote blockquote span{color:#aaa}
+.quote cite{display:block;font-style:normal;font-size:12px;margin-top:40px}
+
+.faq{padding:40px 0 130px}
+.faq .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.faq h2{font-size:clamp(34px,4.4vw,60px);margin-bottom:14px}.faq .wrap>div>p{font-size:13px;color:var(--soft);max-width:300px}
+details{border-top:1px solid var(--line);padding:18px 0}details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;font-size:15px}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";width:22px;height:22px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:14px;flex:none}
+details[open] summary::after{content:"–"}
+details p{font-size:14px;color:var(--soft);margin-top:12px;max-width:480px}
+
+footer{background:#000;color:#fff;padding:90px 0 30px}
+footer .big{font-size:clamp(70px,16vw,240px);font-weight:600;letter-spacing:-.05em;line-height:.85;margin-bottom:60px}
+.fr{display:flex;justify-content:space-between;gap:30px;border-top:1px solid #222;padding-top:24px;font-size:13px;color:#999;flex-wrap:wrap}
+
+@media(max-width:860px){
+  .wrap{padding:0 22px}nav{padding:16px 22px}nav .m{display:none}
+  .hero .t{inset:auto 22px 40px;flex-direction:column;align-items:flex-start}.hero .strip img:nth-child(n+3){display:none}
+  .say{padding:150px 0 80px}.sq{margin-top:90px}
+  .c3,.d2,.s3,.faq .wrap{grid-template-columns:1fr;gap:36px}
+  .stats .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<nav><span class="lg">ZIR</span><span class="m"><a href="#details">Details</a><a href="#pieces">Pieces</a><a href="#faq">Questions</a></span><span class="ar">زر</span></nav>
+
+<section class="hero">
+  <div class="strip"><img src="img/hero.jpg" alt=""><img src="img/blue-floral-abaya/1.jpg" alt=""><img src="img/colorblock-abaya/1.jpg" alt=""><img src="img/yellow-linen-abaya/1.jpg" alt=""></div>
+  <div class="t"><h1>zir.</h1><p>Abayas with small details that complete the whole look. Sizes 50 to 60, every piece 250 SAR.</p></div>
+</section>
+
+<section class="say wrap">
+  <h2 class="rv">You decide what she wears. We take care of the details.</h2>
+  <p class="ar rv">أنتِ تختارين، وإحنا نهتم بالتفاصيل.</p>
+  <div class="sq rv"><img src="img/home-polka.jpg" alt="ZIR polka abaya"></div>
+</section>
+
+<section class="care rv"><span>The</span><b>zir</b><span>is in every detail.</span></section>
+
+<section class="dots" id="details"><div class="wrap">
+  <div class="c3">
+    <div class="rv"><h3>Every detail fits.</h3><div class="box"><img src="img/detail.jpg" alt="" style="object-position:50% 45%"></div><p>Sleeves, cuffs, buttons and prints. Zoom in on any piece and check.</p></div>
+    <div class="rv"><h3>Sizes 50 to 60.</h3><div class="box"><div class="g4"><img src="img/grey-cuff-abaya/1.jpg" alt=""><img src="img/pinstripe-abaya/1.jpg" alt=""><img src="img/blazer-abaya/1.jpg" alt=""><img src="img/yellow-linen-abaya/1.jpg" alt=""></div></div><p>More sizes, so every woman finds hers.</p></div>
+    <div class="rv"><h3>One price. Easy to order.</h3><div class="box"><img src="img/home-button.jpg" alt="ZIR button"></div><p>Every abaya is 250 SAR. Choose your size and order from the store.</p></div>
+  </div>
+  <div class="mid"><a class="pill w" href="#pieces">See the pieces →</a></div>
+</div></section>
+
+<section class="full"><img src="img/home-collection.jpg" alt="" style="object-position:50% 40%"><h2 class="rv">From the office to the majlis. One abaya for every day.</h2></section>
+
+<section class="two wrap" id="pieces">
+  <h2 class="rv">Choose it yourself.<br>Or let us style it.</h2>
+  <div class="d2">
+    <div class="rv"><div class="im"><img src="img/blazer-abaya/3.jpg" alt=""></div><small>Everyday</small><h3>Clean, practical cuts.</h3><p>Blazer, pinstripe, grey cuff and colour-block. Made for work days and long days.</p><a class="l" href="#">See everyday abayas →</a></div>
+    <div class="rv"><div class="im"><img src="img/blue-floral-abaya/2.jpg" alt=""></div><small>Statement</small><h3>Florals and polka.</h3><p>Spring flowers, grey florals and the polka abaya. For when you want to be seen.</p><a class="l" href="#">See statement abayas →</a></div>
+  </div>
+</section>
+
+<section class="stats wrap">
+  <h2 class="rv">Same quality.<br>One simple price.</h2>
+  <div class="s3 rv"><div><b>250 SAR</b><span>every abaya, no surprises</span></div><div><b>50–60</b><span>sizes in every design</span></div><div><b>8</b><span>designs in the new collection</span></div></div>
+  <div class="foot rv"><p>Pick a design, pick your size and order. That is the whole process.</p><a class="pill" href="#">Shop now</a></div>
+</section>
+
+<section class="quote wrap"><blockquote class="rv"><span>"ZIR is the small button that joins the whole piece.</span> We choose each abaya so you can wear it <span>comfortably and with certainty."</span></blockquote><cite>The ZIR idea</cite></section>
+
+<section class="faq" id="faq"><div class="wrap">
+  <div><h2>Abayas for every day, in plain words.</h2><p>Quick answers about sizes, price and ordering.</p></div>
+  <div>
+    <details><summary>What sizes do you have?</summary><p>Every design is available in sizes 50 to 60.</p></details>
+    <details><summary>How much is an abaya?</summary><p>Every ZIR abaya is 250 SAR.</p></details>
+    <details><summary>How do I order?</summary><p>Choose a design and your size, then order from the ZIR store.</p></details>
+    <details><summary>What does ZIR mean?</summary><p>"ZIR" is Arabic for the small button that joins the whole piece, the detail that completes your look.</p></details>
+    <details><summary>Where can I follow ZIR?</summary><p>On Instagram: zir_abaya.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="big">zir.</div>
+  <div class="fr"><span>© 2026 ZIR</span><span>Worn with certainty. <span class="ar">زر</span></span><a href="https://instagram.com/zir_abaya" target="_blank" rel="noopener">Instagram</a></div></div></footer>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(n=>io.observe(n));
+</script>
+</body>
+</html>
