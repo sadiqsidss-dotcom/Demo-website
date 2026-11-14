@@ -37,7 +37,7 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .hero{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,var(--blush),var(--oat) 70%)}
 .hero .big{position:absolute;z-index:1;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;will-change:transform;margin-top:-4vh}
 .arch{position:absolute;z-index:2;left:50%;top:50%;width:min(340px,70vw);height:min(470px,56vh);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:width,height,border-radius}
-.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;opacity:0;will-change:opacity,transform}
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;will-change:opacity,transform}
 .hero .ph{position:absolute;z-index:3;left:0;right:0;bottom:7vh;text-align:center;padding:0 20px;opacity:0;will-change:opacity,transform,filter}
 .hero .ph h1{font-size:clamp(30px,4.6vw,62px);color:var(--ink)}
 .hero .ph.light h1{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
@@ -64,7 +64,7 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .stackS{position:relative;height:340vh;background:var(--oat)}
 .stack{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(18px,4vw,60px);padding:0 4vw;overflow:hidden}
 .stack .box{position:relative;width:min(320px,36vw);aspect-ratio:1/1.35;border-radius:999px 999px 26px 26px;overflow:hidden;background:var(--pink);box-shadow:0 28px 54px var(--shadow),0 0 0 9px #fff,0 0 0 10px var(--rose)}
-.stack .box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;will-change:transform}
+.stack .box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 10%;will-change:transform}
 .stack .L,.stack .R{position:relative;font-family:Fraunces,serif;font-style:italic;font-size:clamp(24px,3.6vw,52px);line-height:1.05;height:2.4em;color:var(--mocha-d)}
 .stack .L{text-align:end}
 .stack .L span,.stack .R span{position:absolute;inset:0;display:flex;align-items:center;opacity:0;will-change:opacity,transform,filter}
@@ -85,7 +85,7 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .card{background:#fff;border-radius:200px 200px 28px 28px;padding:22px 22px 28px;box-shadow:0 14px 34px var(--shadow);text-align:center;transition:transform .35s}
 .card:hover{transform:translateY(-8px) rotate(-.6deg)}
 .card .im{aspect-ratio:1/1.1;border-radius:200px 200px 20px 20px;overflow:hidden;background:var(--blush)}
-.card .im img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform .8s}.card:hover .im img{transform:scale(1.07)}
+.card .im img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transition:transform .8s}.card:hover .im img{transform:scale(1.07)}
 .card .g4{display:grid;grid-template-columns:1fr 1fr;height:100%}.card .g4 img{aspect-ratio:1;height:100%}
 .card h3{font-size:25px;margin:18px 0 6px}.card p{font-size:13px;opacity:.75;max-width:240px;margin:0 auto}
 .c3>.rv:nth-child(2){transition-delay:.12s;margin-top:34px}.c3>.rv:nth-child(3){transition-delay:.24s}
@@ -164,7 +164,7 @@ footer a{color:var(--gold)}
   <div class="side l">Modest abayas</div><div class="side r">Worn with certainty</div>
   <div class="hint">Scroll</div>
   <div class="arch" id="arch">
-    <img src="img/hero.jpg" alt="ZIR polka abaya"><img src="img/blue-floral-abaya/1.jpg" alt="Spring floral abaya"><img src="img/colorblock-abaya/1.jpg" alt="Colour-block abaya"><img src="img/yellow-linen-abaya/1.jpg" alt="Yellow linen abaya">
+    <img src="img/crops/polka-mid.jpg" alt="ZIR polka abaya"><img src="img/crops/floral-mid.jpg" alt="Spring floral abaya"><img src="img/crops/block-mid.jpg" alt="Colour-block abaya"><img src="img/crops/linen-mid.jpg" alt="Yellow linen abaya">
   </div>
   <div class="ph"><h1>Details that <em>complete</em> her.</h1><p class="ar">تفاصيل تكمّل طلّتك</p></div>
   <div class="ph"><h1>Sizes <em>50 to 60.</em></h1><p>More sizes, so every woman finds hers.</p></div>
@@ -175,10 +175,10 @@ footer a{color:var(--gold)}
 <div class="rib"><div id="rib1"><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i></div></div>
 
 <section class="say" id="say">
-  <div class="fl a" data-s=".08"><img src="img/detail.jpg" alt=""></div>
-  <div class="fl b" data-s="-.05"><img src="img/grey-floral-abaya/2.jpg" alt=""></div>
+  <div class="fl a" data-s=".08"><img src="img/crops/polka-close.jpg" alt=""></div>
+  <div class="fl b" data-s="-.05"><img src="img/crops/cuff-close.jpg" alt=""></div>
   <div class="fl c" data-s=".12"><img src="img/home-button.jpg" alt=""></div>
-  <div class="fl d" data-s="-.09"><img src="img/pinstripe-abaya/2.jpg" alt=""></div>
+  <div class="fl d" data-s="-.09"><img src="img/crops/pin-close.jpg" alt=""></div>
   <span class="sp" style="top:40px;left:40%;font-size:22px">✦</span><span class="sp" style="bottom:50px;right:38%;font-size:18px;animation-delay:1.2s">✦</span>
   <div class="wrap"><div class="eyebrow">For her</div>
   <h2 id="split">You decide what she wears. We take care of the details.</h2>
@@ -187,7 +187,7 @@ footer a{color:var(--gold)}
 
 <section class="stackS" id="stackS"><div class="stack">
   <div class="L"><span>Everyday</span><span>Spring</span><span>Linen,</span></div>
-  <div class="box"><img src="img/blazer-abaya/3.jpg" alt=""><img src="img/blue-floral-abaya/2.jpg" alt=""><img src="img/yellow-linen-abaya/2.jpg" alt=""></div>
+  <div class="box"><img src="img/crops/blazer-front.jpg" alt=""><img src="img/crops/floral-front.jpg" alt=""><img src="img/crops/linen-front.jpg" alt=""></div>
   <div class="R"><span>cuts that work.</span><span>flowers, worn.</span><span>for warm days.</span></div>
   <div class="cnt">THE EDIT</div>
 </div></section>
@@ -202,9 +202,9 @@ footer a{color:var(--gold)}
   <div class="eyebrow" style="text-align:center">The details</div>
   <h2 class="rv">Soft in every <em>detail.</em></h2>
   <div class="c3">
-    <div class="card rv"><div class="im"><img src="img/detail.jpg" alt=""></div><h3>Every detail fits</h3><p>Sleeves, cuffs, buttons and prints. Zoom in on any piece and check.</p></div>
-    <div class="card rv"><div class="im"><div class="g4"><img src="img/grey-cuff-abaya/1.jpg" alt=""><img src="img/pinstripe-abaya/1.jpg" alt=""><img src="img/blazer-abaya/1.jpg" alt=""><img src="img/yellow-linen-abaya/1.jpg" alt=""></div></div><h3>Sizes 50 to 60</h3><p>More sizes, so every woman finds hers.</p></div>
-    <div class="card rv"><div class="im"><img src="img/colorblock-abaya/3.jpg" alt=""></div><h3>One price</h3><p>Every abaya is 250 SAR. Choose your size and order from the store.</p></div>
+    <div class="card rv"><div class="im"><img src="img/crops/polka-close.jpg" alt=""></div><h3>Every detail fits</h3><p>Sleeves, cuffs, buttons and prints. Zoom in on any piece and check.</p></div>
+    <div class="card rv"><div class="im"><div class="g4"><img src="img/crops/cuff-close.jpg" alt=""><img src="img/crops/pin-close.jpg" alt=""><img src="img/crops/blazer-close.jpg" alt=""><img src="img/crops/linen-close.jpg" alt=""></div></div><h3>Sizes 50 to 60</h3><p>More sizes, so every woman finds hers.</p></div>
+    <div class="card rv"><div class="im"><img src="img/crops/block-close.jpg" alt=""></div><h3>One price</h3><p>Every abaya is 250 SAR. Choose your size and order from the store.</p></div>
   </div>
 </div></section>
 
@@ -214,8 +214,8 @@ footer a{color:var(--gold)}
   <div class="eyebrow" style="text-align:center">The collection</div>
   <h2 class="rv">Choose it <em>yourself.</em></h2>
   <div class="d2">
-    <div class="rv"><div class="im"><img src="img/blazer-abaya/3.jpg" alt=""></div><div class="tx"><small>Everyday</small><h3>Clean, practical cuts</h3><p>Blazer, pinstripe, grey cuff and colour-block. For work days and long days.</p><a class="btn o" href="#">See everyday</a></div></div>
-    <div class="rv"><div class="im"><img src="img/blue-floral-abaya/2.jpg" alt=""></div><div class="tx"><small>Statement</small><h3>Florals and polka</h3><p>Spring flowers, grey florals and the polka abaya. For when you want to be seen.</p><a class="btn o" href="#">See statement</a></div></div>
+    <div class="rv"><div class="im"><img src="img/crops/blazer-mid.jpg" alt=""></div><div class="tx"><small>Everyday</small><h3>Clean, practical cuts</h3><p>Blazer, pinstripe, grey cuff and colour-block. For work days and long days.</p><a class="btn o" href="#">See everyday</a></div></div>
+    <div class="rv"><div class="im"><img src="img/crops/floral-mid.jpg" alt=""></div><div class="tx"><small>Statement</small><h3>Florals and polka</h3><p>Spring flowers, grey florals and the polka abaya. For when you want to be seen.</p><a class="btn o" href="#">See statement</a></div></div>
   </div>
 </div></section>
 
