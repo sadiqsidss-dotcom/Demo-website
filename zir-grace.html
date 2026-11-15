@@ -82,7 +82,28 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .stack .L{text-align:end}
 .stack .L span,.stack .R span{position:absolute;inset:0;display:flex;align-items:center;opacity:0;will-change:opacity,transform,filter}
 .stack .L span{justify-content:flex-end}.stack .R span{color:var(--ink)}
-.stack .cnt{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mocha-d)}
+.stack{--bw:min(340px,38vw)}
+.stack .box{width:var(--bw)}
+.stack .L,.stack .R{z-index:3}
+.stack .box{z-index:2}
+.st-top{position:absolute;top:clamp(84px,14vh,130px);left:0;right:0;text-align:center;z-index:4;pointer-events:none;padding:0 20px}
+.st-top .eyebrow{margin-bottom:6px}
+.st-top h2{font-size:clamp(26px,3.6vw,50px)}
+.st-num{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.st-num span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-style:italic;font-size:clamp(260px,44vw,600px);line-height:.8;color:var(--blush);opacity:0;will-change:opacity,transform}
+.sring{position:absolute;z-index:1;left:50%;top:50%;border:1px dashed rgba(185,131,102,.45);border-bottom:0;border-radius:999px 999px 0 0;pointer-events:none;animation:breathe 5s ease-in-out infinite}
+.sring.r1{width:calc(var(--bw) + 70px);height:calc(var(--bw)*1.35 + 50px);transform:translate(-50%,-50%) translateY(-18px)}
+.sring.r2{width:calc(var(--bw) + 140px);height:calc(var(--bw)*1.35 + 100px);transform:translate(-50%,-50%) translateY(-36px);animation-delay:.8s;opacity:.7}
+.sring.r3{width:calc(var(--bw) + 210px);height:calc(var(--bw)*1.35 + 150px);transform:translate(-50%,-50%) translateY(-54px);animation-delay:1.6s;opacity:.45}
+@keyframes breathe{0%,100%{scale:1}50%{scale:1.035}}
+.st-cap{position:absolute;bottom:clamp(36px,8vh,84px);left:0;right:0;height:96px;z-index:4;pointer-events:none}
+.st-cap>div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;will-change:opacity,transform}
+.st-cap b{font-family:Fraunces,serif;font-weight:400;font-style:italic;font-size:clamp(22px,2.4vw,32px);color:var(--ink);line-height:1}
+.st-cap small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha-d)}
+.st-cap a{pointer-events:auto;display:inline-block;background:var(--mocha);color:#fff;border-radius:999px;padding:8px 22px;font-size:12px;letter-spacing:.06em;box-shadow:0 8px 18px var(--shadow)}
+.st-dots{position:absolute;z-index:4;right:clamp(10px,2.4vw,34px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.st-dots i{width:7px;height:7px;border-radius:99px;background:var(--rose);transition:height .4s,background .4s}
+.st-dots i.on{height:26px;background:var(--mocha-d)}
 
 /* button motif */
 .care{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,60px);padding:30px 20px 90px;background:var(--oat);overflow:hidden}
@@ -161,7 +182,11 @@ footer a{color:var(--gold)}
   .hero .side{display:none}.hero .ph{bottom:5vh}
   .fl.a{left:-20px;width:100px;height:140px;top:30px}.fl.b{right:-14px;width:90px;height:120px;top:80px}.fl.c,.fl.d{display:none}
   .say{padding:70px 0 50px}.say h2{padding-top:130px}
-  .stack{padding:0 12px;gap:10px}.stack .box{width:38vw}
+  .stack{--bw:min(54vw,240px);grid-template-columns:1fr;grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:16px;padding:0 20px}
+  .stack .L,.stack .R{text-align:center;height:1.25em;width:100%;font-size:clamp(28px,8.4vw,40px)}
+  .stack .L span{justify-content:center}.stack .R span{justify-content:center}
+  .st-top{top:clamp(92px,15vh,120px)}.st-cap{bottom:clamp(30px,7vh,60px)}
+  .sring.r3{display:none}
   .care{flex-direction:column;padding:20px 20px 70px;text-align:center}.care .t{max-width:none}
   .c3,.faq .wrap{grid-template-columns:1fr}.c3>.rv:nth-child(2){margin-top:0}
   .d2{grid-template-columns:1fr}.d2>div:nth-child(2){margin-top:0}
@@ -207,10 +232,20 @@ footer a{color:var(--gold)}
 </section>
 
 <section class="stackS" id="stackS"><div class="stack">
+  <div class="st-num"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+  <span class="sring r1"></span><span class="sring r2"></span><span class="sring r3"></span>
+  <span class="sp" style="top:30%;left:9%;font-size:22px">✦</span><span class="sp" style="top:62%;right:9%;font-size:26px;animation-delay:1s">✦</span><span class="sp" style="bottom:20%;left:14%;font-size:16px;animation-delay:2s">✦</span>
+  <div class="st-top"><div class="eyebrow">The edit</div><h2>Four moods, <em>one zir.</em></h2></div>
   <div class="L"><span>Everyday</span><span>Spring</span><span>Linen,</span><span>Polka,</span></div>
   <div class="box"><img src="img/crops/st-blazer.jpg" alt=""><img src="img/crops/st-floral.jpg" alt=""><img src="img/crops/st-linen.jpg" alt=""><img src="img/crops/st-polka.jpg" alt=""></div>
   <div class="R"><span>cuts that work.</span><span>flowers, worn.</span><span>for warm days.</span><span>for her day.</span></div>
-  <div class="cnt">THE EDIT</div>
+  <div class="st-cap">
+    <div><b>Blazer Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Spring Floral Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Yellow Linen Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Polka Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com/%D8%B9%D8%A8%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D9%86%D9%82%D8%A7%D8%B7/p1771985853" target="_blank" rel="noopener">Shop</a></div>
+  </div>
+  <div class="st-dots"><i></i><i></i><i></i><i></i></div>
 </div></section>
 
 <section class="care" id="care">
@@ -282,7 +317,7 @@ function words(ws,p){const n=ws.length;ws.forEach((w,i)=>{const t=cl(p*(n+2)-i);
 
 const rings=$$('.ring'),fas=$$('.fa'),badge=$('#badge');
 const heroS=$('#heroS'),hero=$('#hero'),arch=$('#arch'),aimgs=$$('img',arch),phs=$$('.ph',hero),big=$('#big'),hint=$('.hint');
-const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img');
+const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img'),Nums=$$('.st-num span'),Caps=$$('.st-cap>div'),Dots=$$('.st-dots i');
 const fullS=$('#fullS'),full=$('#full'),fimg=$('img',full);
 const care=$('#care'),cz=$('#cz'),c1=$('#c1'),c2=$('#c2'),nav=$('#nav'),rib=$('#rib1'),say=$('#say');
 const prog=el=>{const r=el.getBoundingClientRect();return cl(-r.top/(r.height-innerHeight))};
@@ -321,7 +356,10 @@ function frame(){
   /* stack */
   const N=Ls.length,q=cl(prog(stackS)*N,.5,N-.5);
   Ls.forEach((el,k)=>{const d=q-(k+.5),a=cl((.62-Math.abs(d))/.24);
-    [el,Rs[k]].forEach(n=>{n.style.opacity=a;n.style.transform='translateY('+(d*-38)+'px)';n.style.filter='blur('+((1-a)*8)+'px)'})});
+    [el,Rs[k]].forEach(n=>{n.style.opacity=a;n.style.transform='translateY('+(d*-38)+'px)';n.style.filter='blur('+((1-a)*8)+'px)'});
+    Nums[k].style.opacity=a*.9;Nums[k].style.transform='translate(-50%,calc(-50% + '+(d*-50)+'px)) scale('+(1+d*.06)+')';
+    Caps[k].style.opacity=a;Caps[k].style.transform='translateY('+(d*-24)+'px)';
+    Dots[k].classList.toggle('on',Math.abs(d)<.5)});
   Bs.forEach((im,k)=>{const t=k===0?1:cl((q-(k-.12))/.5);im.style.transform='translateY('+((1-t)*104)+'%)';im.style.zIndex=k});
 
   /* button motif */
