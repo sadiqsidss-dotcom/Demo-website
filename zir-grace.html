@@ -388,6 +388,60 @@ const io2=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)retur
   const el=x.target,txt=el.textContent,m=txt.match(/^\d+/);if(!m||reduce)return;const to=+m[0],suf=txt.slice(m[0].length),t0=performance.now();
   (function s(n){const k=cl((n-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+suf;if(k<1)requestAnimationFrame(s)})(t0)}),{threshold:.6});
 $$('.s3 b').forEach(n=>io2.observe(n));
+
+/* ---- stop on each picture: one scroll = one step (hero phrases + stack photos) ---- */
+if(!reduce){
+  const secs=[
+    {el:heroS,t:()=>[.12,.32,.52,.74]},
+    {el:stackS,t:()=>{const n=Ls.length;return Array.from({length:n},(_,k)=>k===0?0:(k+.5)/n)}}
+  ];
+  let anim=false,lockUntil=0,lastW=0,lastA=0,touching=false,tStart=0,tDone=false,timer;
+  const info=sc=>{const r=sc.el.getBoundingClientRect(),top=r.top+scrollY,H=sc.el.offsetHeight-innerHeight;return{top,H,T:sc.t().map(f=>top+H*f)}};
+  const where=y=>{for(const sc of secs){const i=info(sc);if(y>=i.top-1&&y<=i.top+i.H+1)return i}return null};
+  function target(dir){
+    const y=scrollY,i=where(y);if(!i)return null;const tol=8;
+    if(dir>0){const f=i.T.find(t=>t>y+tol);return f===undefined?null:f}
+    const b=i.T.filter(t=>t<y-tol);return b.length?b[b.length-1]:null;
+  }
+  function go(y){
+    anim=true;const y0=scrollY,d=y-y0,dur=cl(560+Math.abs(d)*.3,560,950),t0=performance.now();
+    const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    (function f(n){const k=cl((n-t0)/dur);scrollTo({top:y0+d*ease(k),behavior:'instant'});
+      if(k<1)requestAnimationFrame(f);else{anim=false;lockUntil=performance.now()+280}})(t0);
+  }
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||Math.abs(e.deltaY)<Math.abs(e.deltaX))return;
+    const now=performance.now(),a=Math.abs(e.deltaY);
+    if(anim||now<lockUntil){if(where(scrollY))e.preventDefault();lastW=now;lastA=a;return}
+    const t=target(e.deltaY>0?1:-1);if(t===null)return;
+    e.preventDefault();
+    const fresh=now-lastW>110||a>lastA*1.6;lastW=now;lastA=a;
+    if(fresh)go(t);
+  },{passive:false});
+  addEventListener('touchstart',e=>{touching=true;tStart=e.touches[0].clientY;tDone=false},{passive:true});
+  addEventListener('touchmove',e=>{
+    if(!e.cancelable)return;
+    if(anim||tDone){if(where(scrollY))e.preventDefault();return}
+    const dy=tStart-e.touches[0].clientY;if(Math.abs(dy)<6)return;
+    const t=target(dy>0?1:-1);if(t===null)return;
+    e.preventDefault();tDone=true;go(t);
+  },{passive:false});
+  addEventListener('touchend',()=>{touching=false;tDone=false});
+  addEventListener('keydown',e=>{
+    const k=e.key,dir=(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey))?1:(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey))?-1:0;
+    if(!dir||e.target.closest('input,textarea,summary,a,button'))return;
+    if(anim){if(where(scrollY))e.preventDefault();return}
+    const t=target(dir);if(t===null)return;e.preventDefault();go(t);
+  });
+  /* when scrolling stops between two pictures, settle on the nearest one */
+  addEventListener('scroll',()=>{
+    clearTimeout(timer);if(anim||touching)return;
+    timer=setTimeout(()=>{const i=where(scrollY);if(!i)return;const y=scrollY;
+      if(y<i.T[0]||y>i.T[i.T.length-1])return;
+      let best=i.T[0];i.T.forEach(t=>{if(Math.abs(t-y)<Math.abs(best-y))best=t});
+      if(Math.abs(best-y)>6)go(best)},170);
+  },{passive:true});
+}
 })();
 </script>
 </body>
