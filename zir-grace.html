@@ -33,18 +33,63 @@ nav .m{display:flex;gap:22px}nav .m a{opacity:.75}nav .m a:hover{opacity:1;color
 nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 
 /* hero (pinned) */
-.heroS{position:relative;height:380vh;background:linear-gradient(var(--oat),var(--pink))}
-.hero{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,var(--blush),var(--oat) 70%)}
-.hero .big{position:absolute;z-index:1;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;will-change:transform;margin-top:-4vh}
-.arch{position:absolute;z-index:2;left:50%;top:50%;width:min(340px,70vw);height:min(470px,56vh);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:width,height,border-radius}
-.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;will-change:opacity,transform}
-.hero .ph{position:absolute;z-index:3;left:0;right:0;bottom:7vh;text-align:center;padding:0 20px;opacity:0;will-change:opacity,transform,filter}
+/* hero: a real slider. one swipe = one slide */
+.heroS{position:relative;height:100vh;height:100svh;background:var(--oat)}
+.hero{position:relative;height:100%;overflow:hidden;display:grid;place-items:center;touch-action:none;--aw:min(430px,62vw);--ah:min(590px,64svh);--i:0}
+.bgs,.bgs i{position:absolute;inset:0;z-index:0}
+.bgs i{opacity:0;transition:opacity 1.2s ease}
+.bgs i:nth-child(1){background:radial-gradient(circle at 50% 38%,#F6DDD6,#F7EFE6 72%)}
+.bgs i:nth-child(2){background:radial-gradient(circle at 50% 38%,#E2DAEC,#F5E9E8 72%)}
+.bgs i:nth-child(3){background:radial-gradient(circle at 50% 38%,#EBD2BC,#F7EBDF 72%)}
+.bgs i:nth-child(4){background:radial-gradient(circle at 50% 38%,#F3E7B0,#FBF5E1 72%)}
+.hero[data-i="0"] .bgs i:nth-child(1),.hero[data-i="1"] .bgs i:nth-child(2),.hero[data-i="2"] .bgs i:nth-child(3),.hero[data-i="3"] .bgs i:nth-child(4),.hero[data-i="4"] .bgs i:nth-child(4){opacity:1}
+.blob{position:absolute;z-index:0;border-radius:50%;filter:blur(42px);transition:transform 1.6s cubic-bezier(.2,.7,.2,1),background 1.2s;will-change:transform;pointer-events:none}
+.blob.b1{width:48vw;height:48vw;left:-12vw;top:-8vw;background:rgba(235,207,194,.75);transform:translate(calc(var(--i)*10vw),calc(var(--i)*6svh))}
+.blob.b2{width:42vw;height:42vw;right:-10vw;bottom:-12vw;background:rgba(212,169,78,.30);transform:translate(calc(var(--i)*-9vw),calc(var(--i)*-5svh))}
+.blob.b3{width:30vw;height:30vw;left:36vw;top:56svh;background:rgba(231,184,176,.5);transform:translate(calc(var(--i)*-6vw),calc(var(--i)*-9svh))}
+.hero[data-i="1"] .b1{background:rgba(205,196,232,.7)}.hero[data-i="2"] .b1{background:rgba(228,190,150,.7)}.hero[data-i="3"] .b1,.hero[data-i="4"] .b1{background:rgba(244,226,140,.65)}
+.hero[data-i="1"] .b3{background:rgba(190,170,225,.45)}.hero[data-i="2"] .b3{background:rgba(214,160,120,.45)}.hero[data-i="3"] .b3,.hero[data-i="4"] .b3{background:rgba(235,215,110,.45)}
+.hero .big{position:absolute;z-index:1;left:50%;top:50%;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;pointer-events:none;transform:translate(calc(-50% + var(--i)*-6vw),-54%) rotate(calc(var(--i)*-3deg));transition:transform 1.5s cubic-bezier(.2,.7,.2,1),color 1.2s,opacity .8s}
+.hero[data-i="1"] .big{color:#D9CFE6}.hero[data-i="2"] .big{color:#E4C9AE}.hero[data-i="3"] .big{color:#EEDF9A}.hero[data-i="4"] .big{opacity:0}
+.hsp{translate:calc(var(--i)*var(--mx,-3vw)) calc(var(--i)*var(--my,2svh));transition:translate 1.5s cubic-bezier(.2,.7,.2,1)}
+.arch{position:absolute;z-index:3;left:50%;top:50%;width:var(--aw);height:var(--ah);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);transition:width 1.05s cubic-bezier(.65,0,.2,1),height 1.05s cubic-bezier(.65,0,.2,1),border-radius 1.05s cubic-bezier(.65,0,.2,1),transform 1.05s cubic-bezier(.65,0,.2,1),box-shadow .6s}
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;transform:scale(1.16);transition:opacity .95s ease,transform 1.5s cubic-bezier(.2,.7,.2,1)}
+.arch img.on{opacity:1;transform:none}
+.hero[data-i="4"] .arch{width:100vw;height:100vh;height:100svh;border-radius:0;transform:translate(-50%,-50%);box-shadow:none}
+.ring{position:absolute;z-index:1;left:50%;top:50%;width:calc(var(--aw) + 68px);height:calc(var(--ah) + 48px);transform:translate(-50%,-52%);border:1px dashed rgba(185,131,102,.5);border-bottom:0;border-radius:999px 999px 0 0;pointer-events:none;animation:breathe 5s ease-in-out infinite;transition:opacity .8s,width 1.05s,height 1.05s}
+.ring.r2{width:calc(var(--aw) + 136px);height:calc(var(--ah) + 96px);animation-delay:.8s;opacity:.7}
+.ring.r3{width:calc(var(--aw) + 204px);height:calc(var(--ah) + 144px);animation-delay:1.6s;opacity:.45}
+.hero[data-i="4"] .ring{opacity:0}
+.fa{position:absolute;z-index:2;bottom:calc(50% - var(--ah)*.48 + 6px);border-radius:999px 999px 24px 24px;overflow:hidden;box-shadow:0 22px 44px var(--shadow),0 0 0 7px #fff,0 0 0 8px var(--rose);animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both;translate:0 calc(var(--i)*var(--fy,-12px));rotate:calc(var(--i)*var(--fr,1deg));transition:translate 1.4s cubic-bezier(.2,.7,.2,1),rotate 1.4s cubic-bezier(.2,.7,.2,1),opacity .8s}
+.hero[data-i="4"] .fa,.hero[data-i="4"] .badge{opacity:0;pointer-events:none}
+.fa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%;opacity:0;transform:scale(1.12);transition:opacity .9s ease,transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.fa img.on{opacity:1;transform:none}
+.fa.n1{left:calc(50% - var(--aw)/2 - 22px - 190px);width:190px;height:min(380px,42svh);animation-delay:.15s;--fy:-18px;--fr:1.6deg}
+.fa.f1{left:calc(50% - var(--aw)/2 - 22px - 190px - 26px - 160px);width:160px;height:min(290px,32svh);animation-delay:.3s;--fy:10px;--fr:-1.4deg}
+.fa.n2{left:calc(50% + var(--aw)/2 + 22px);width:190px;height:min(340px,38svh);animation-delay:.2s;--fy:-8px;--fr:-1.8deg}
+.fa.f2{left:calc(50% + var(--aw)/2 + 22px + 190px + 26px);width:160px;height:min(270px,30svh);animation-delay:.35s;--fy:16px;--fr:1.2deg}
+@keyframes rise{from{opacity:0;transform:translateY(60px) scale(.94)}to{opacity:1;transform:none}}
+.badge{position:absolute;z-index:4;left:calc(50% + var(--aw)/2 - 62px);top:calc(50% + min(150px,16svh));width:116px;height:116px;border-radius:50%;background:var(--blush);box-shadow:0 12px 26px var(--shadow);display:grid;place-items:center;translate:0 calc(var(--i)*-16px);transition:opacity .8s,translate 1.4s cubic-bezier(.2,.7,.2,1)}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 16s linear infinite}
+.badge text{font-family:Poppins,sans-serif;font-size:10.4px;letter-spacing:.16em;fill:var(--mocha-d);text-transform:uppercase}
+.badge b{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:25px;color:var(--mocha-d)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .ph{position:absolute;z-index:5;left:0;right:0;bottom:7svh;text-align:center;padding:0 20px;opacity:0;transform:translateY(26px);filter:blur(10px);pointer-events:none;transition:opacity .8s .3s,transform .9s .3s cubic-bezier(.2,.7,.2,1),filter .8s .3s}
+.hero .ph.on{opacity:1;transform:none;filter:none}
 .hero .ph h1{font-size:clamp(30px,4.6vw,62px);color:var(--ink)}
 .hero .ph.light h1{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
 .hero .ph p{font-size:14px;margin-top:8px;opacity:.8}
-.hero .side{position:absolute;z-index:3;top:50%;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d);writing-mode:vertical-rl;opacity:.7}
+.hero .ph.light p{color:#fff}
+.hero .side{position:absolute;z-index:3;top:50%;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d);writing-mode:vertical-rl;opacity:.7;transition:opacity .8s}
 .hero .side.l{left:26px;transform:translateY(-50%) rotate(180deg)}.hero .side.r{right:26px;transform:translateY(-50%)}
-.hint{position:absolute;z-index:3;top:86px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d)}
+.hero[data-i="4"] .side{opacity:0}
+.hint{position:absolute;z-index:6;top:86px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d);transition:opacity .6s;pointer-events:none}
+.hero:not([data-i="0"]) .hint{opacity:0}
+.hdots{position:absolute;z-index:6;right:clamp(10px,2.4vw,34px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.hdots i{width:7px;height:7px;border-radius:99px;background:var(--rose);transition:height .4s,background .4s}
+.hdots i.on{height:26px;background:var(--mocha-d)}
+.hero[data-i="4"] .hdots i{background:rgba(255,255,255,.6)}.hero[data-i="4"] .hdots i.on{background:#fff}
+@media(prefers-reduced-motion:reduce){.hero *,.hero{transition-duration:.01s!important;animation:none!important}}
 
 /* ribbon */
 .rib{background:var(--mocha-d);color:var(--oat);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:Fraunces,serif;font-style:italic;font-size:22px}
@@ -52,13 +97,13 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .rib i{color:var(--gold);font-style:normal}
 
 /* intro */
-.say{position:relative;overflow:hidden;padding:90px 0 70px;text-align:center;background:var(--pink)}
-.say h2{font-size:clamp(34px,5.2vw,72px);max-width:880px;margin:0 auto;position:relative;z-index:2}
+.say{position:relative;overflow:hidden;padding:120px 0 190px;text-align:center;background:var(--pink)}
+.say h2{font-size:clamp(34px,5.2vw,72px);max-width:760px;margin:0 auto;position:relative;z-index:2}
 .say .ar{color:var(--mocha-d);margin-top:16px;font-size:18px;position:relative;z-index:2}
 .w{display:inline-block;will-change:opacity,filter}
-.fl{position:absolute;z-index:1;border-radius:999px 999px 20px 20px;overflow:hidden;box-shadow:0 18px 40px var(--shadow),0 0 0 6px #fff;will-change:transform}
+.fl{position:absolute;z-index:1;border-radius:999px 999px 24px 24px;overflow:hidden;box-shadow:0 22px 46px var(--shadow),0 0 0 8px #fff,0 0 0 9px var(--rose);will-change:transform}
 .fl img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.fl.a{left:5%;top:60px;width:150px;height:210px}.fl.b{right:5%;top:130px;width:130px;height:180px;border-radius:999px}.fl.c{left:14%;bottom:30px;width:104px;height:104px;border-radius:50%}.fl.d{right:15%;bottom:20px;width:120px;height:160px}
+.fl.a{left:3%;top:44px;width:clamp(150px,16vw,232px);height:clamp(212px,22.5vw,326px)}.fl.b{right:2%;top:110px;width:clamp(130px,14vw,200px);height:clamp(190px,20vw,288px);border-radius:999px}.fl.c{left:17%;bottom:30px;width:clamp(96px,9vw,132px);height:clamp(96px,9vw,132px);border-radius:50%}.fl.d{right:17%;bottom:24px;width:clamp(118px,10.5vw,152px);height:clamp(160px,14vw,204px)}
 
 /* sticky stack */
 .stackS{position:relative;height:420vh;background:var(--oat)}
@@ -69,7 +114,28 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .stack .L{text-align:end}
 .stack .L span,.stack .R span{position:absolute;inset:0;display:flex;align-items:center;opacity:0;will-change:opacity,transform,filter}
 .stack .L span{justify-content:flex-end}.stack .R span{color:var(--ink)}
-.stack .cnt{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mocha-d)}
+.stack{--bw:min(340px,38vw)}
+.stack .box{width:var(--bw)}
+.stack .L,.stack .R{z-index:3}
+.stack .box{z-index:2}
+.st-top{position:absolute;top:clamp(84px,14vh,130px);left:0;right:0;text-align:center;z-index:4;pointer-events:none;padding:0 20px}
+.st-top .eyebrow{margin-bottom:6px}
+.st-top h2{font-size:clamp(26px,3.6vw,50px)}
+.st-num{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.st-num span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-style:italic;font-size:clamp(260px,44vw,600px);line-height:.8;color:var(--blush);opacity:0;will-change:opacity,transform}
+.sring{position:absolute;z-index:1;left:50%;top:50%;border:1px dashed rgba(185,131,102,.45);border-bottom:0;border-radius:999px 999px 0 0;pointer-events:none;animation:breathe 5s ease-in-out infinite}
+.sring.r1{width:calc(var(--bw) + 70px);height:calc(var(--bw)*1.35 + 50px);transform:translate(-50%,-50%) translateY(-18px)}
+.sring.r2{width:calc(var(--bw) + 140px);height:calc(var(--bw)*1.35 + 100px);transform:translate(-50%,-50%) translateY(-36px);animation-delay:.8s;opacity:.7}
+.sring.r3{width:calc(var(--bw) + 210px);height:calc(var(--bw)*1.35 + 150px);transform:translate(-50%,-50%) translateY(-54px);animation-delay:1.6s;opacity:.45}
+@keyframes breathe{0%,100%{scale:1}50%{scale:1.035}}
+.st-cap{position:absolute;bottom:clamp(36px,8vh,84px);left:0;right:0;height:96px;z-index:4;pointer-events:none}
+.st-cap>div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;will-change:opacity,transform}
+.st-cap b{font-family:Fraunces,serif;font-weight:400;font-style:italic;font-size:clamp(22px,2.4vw,32px);color:var(--ink);line-height:1}
+.st-cap small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha-d)}
+.st-cap a{pointer-events:auto;display:inline-block;background:var(--mocha);color:#fff;border-radius:999px;padding:8px 22px;font-size:12px;letter-spacing:.06em;box-shadow:0 8px 18px var(--shadow)}
+.st-dots{position:absolute;z-index:4;right:clamp(10px,2.4vw,34px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.st-dots i{width:7px;height:7px;border-radius:99px;background:var(--rose);transition:height .4s,background .4s}
+.st-dots i.on{height:26px;background:var(--mocha-d)}
 
 /* button motif */
 .care{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(18px,4vw,60px);padding:30px 20px 90px;background:var(--oat);overflow:hidden}
@@ -139,12 +205,22 @@ footer .tag{margin:14px 0 34px;font-size:14px;letter-spacing:.2em;text-transform
 .fr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;font-size:12px;opacity:.75;max-width:1180px;margin:0 auto 0;padding-inline:28px}
 footer a{color:var(--gold)}
 
+@media(max-width:1100px){.fa.f1,.fa.f2{display:none}.say h2{max-width:540px}.say{padding:130px 0 200px}}
 @media(max-width:860px){
+  .hero{--aw:min(64vw,320px);--ah:min(50svh,460px)}
+  .fa.n1{left:calc(50% - var(--aw)/2 - 24vw + 6vw);width:24vw;height:34svh}.fa.n2{left:calc(50% + var(--aw)/2 - 6vw);width:24vw;height:30svh}
+  .badge{left:calc(50% + var(--aw)/2 - 44px);top:calc(50% + 12svh);width:88px;height:88px}.badge b{font-size:19px}.badge text{font-size:9.6px}
+  .fa{box-shadow:0 12px 24px var(--shadow),0 0 0 4px #fff}
   .wrap{padding:0 20px}nav{gap:14px;padding:7px 8px 7px 18px}nav .m{display:none}
-  .hero .side{display:none}.hero .ph{bottom:5vh}
-  .fl.a{left:-20px;width:100px;height:140px;top:30px}.fl.b{right:-14px;width:90px;height:120px;top:80px}.fl.c,.fl.d{display:none}
-  .say{padding:70px 0 50px}.say h2{padding-top:130px}
-  .stack{padding:0 12px;gap:10px}.stack .box{width:38vw}
+  .hero .side{display:none}.hero .ph{bottom:5svh}
+  .fl.a{left:6vw;top:44px;width:40vw;height:57vw}.fl.b{right:6vw;top:92px;width:34vw;height:49vw}.fl.c{display:block;left:9vw;bottom:26px;width:27vw;height:27vw}.fl.d{display:block;right:8vw;bottom:20px;width:31vw;height:42vw}
+  .fl{box-shadow:0 14px 28px var(--shadow),0 0 0 5px #fff,0 0 0 6px var(--rose)}
+  .say{padding:calc(60px + 56vw) 0 calc(46vw + 40px)}.say h2{padding-top:0}
+  .stack{--bw:min(54vw,240px);grid-template-columns:1fr;grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:16px;padding:0 20px}
+  .stack .L,.stack .R{text-align:center;height:1.25em;width:100%;font-size:clamp(28px,8.4vw,40px)}
+  .stack .L span{justify-content:center}.stack .R span{justify-content:center}
+  .st-top{top:clamp(92px,15vh,120px)}.st-cap{bottom:clamp(30px,7vh,60px)}
+  .sring.r3{display:none}
   .care{flex-direction:column;padding:20px 20px 70px;text-align:center}.care .t{max-width:none}
   .c3,.faq .wrap{grid-template-columns:1fr}.c3>.rv:nth-child(2){margin-top:0}
   .d2{grid-template-columns:1fr}.d2>div:nth-child(2){margin-top:0}
@@ -158,17 +234,25 @@ footer a{color:var(--gold)}
 
 <nav id="nav"><span class="lg">zir</span><span class="m"><a href="#pieces">Pieces</a><a href="#details">Details</a><a href="#faq">Questions</a></span><a class="btn" href="#pieces">Shop</a></nav>
 
-<section class="heroS" id="heroS"><div class="hero" id="hero">
+<section class="heroS" id="heroS"><div class="hero" id="hero" data-i="0">
+  <div class="bgs"><i></i><i></i><i></i><i></i></div>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   <div class="big" id="big">zir</div>
-  <span class="sp" style="top:18%;left:22%;font-size:26px">✦</span><span class="sp" style="top:30%;right:20%;font-size:18px;animation-delay:.8s">✦</span><span class="sp" style="bottom:26%;left:16%;font-size:20px;animation-delay:1.6s">✦</span><span class="sp" style="top:62%;right:15%;font-size:30px;animation-delay:2.2s">✦</span>
+  <span class="sp hsp" style="top:18%;left:22%;font-size:26px;--mx:-4vw;--my:3svh">✦</span><span class="sp hsp" style="top:30%;right:20%;font-size:18px;animation-delay:.8s;--mx:3vw;--my:5svh">✦</span><span class="sp hsp" style="bottom:26%;left:16%;font-size:20px;animation-delay:1.6s;--mx:-2vw;--my:-4svh">✦</span><span class="sp hsp" style="top:62%;right:15%;font-size:30px;animation-delay:2.2s;--mx:4vw;--my:-3svh">✦</span>
   <div class="side l">Modest abayas</div><div class="side r">Worn with certainty</div>
-  <div class="hint">Scroll</div>
+  <div class="hint">Swipe up</div>
+  <div class="hdots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+  <div class="fa f1"><img alt=""><img alt=""></div><div class="fa n1"><img alt=""><img alt=""></div>
+  <div class="fa n2"><img alt=""><img alt=""></div><div class="fa f2"><img alt=""><img alt=""></div>
+  <div class="badge" id="badge"><svg viewBox="0 0 120 120"><defs><path id="cp" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#cp" textLength="278" lengthAdjust="spacing">250 SAR ✦ sizes 50–60 ✦ worn softly ✦</textPath></text></svg><b>zir</b></div>
   <div class="arch" id="arch">
-    <img src="img/crops/hero-polka.jpg" alt="ZIR polka abaya"><img src="img/crops/hero-floral.jpg" alt="Spring floral abaya"><img src="img/crops/hero-block.jpg" alt="Colour-block abaya"><img src="img/crops/hero-linen.jpg" alt="Yellow linen abaya, seen from behind" style="object-position:50% 72%">
+    <img class="on" src="img/crops/hero-polka.jpg" alt="ZIR polka abaya"><img src="img/crops/hero-floral.jpg" alt="Spring floral abaya"><img src="img/crops/hero-block.jpg" alt="Colour-block abaya"><img src="img/crops/hero-linen.jpg" alt="Yellow linen abaya, seen from behind" style="object-position:50% 72%">
   </div>
-  <div class="ph"><h1>Details that <em>complete</em> her.</h1><p class="ar">تفاصيل تكمّل طلّتك</p></div>
+  <div class="ph on"><h1>Details that <em>complete</em> her.</h1><p class="ar">تفاصيل تكمّل طلّتك</p></div>
   <div class="ph"><h1>Sizes <em>50 to 60.</em></h1><p>More sizes, so every woman finds hers.</p></div>
   <div class="ph"><h1>One price. <em>250 SAR.</em></h1><p>Every abaya, no surprises.</p></div>
+  <div class="ph"><h1>Cut to <em>flow.</em></h1><p>The yellow linen, seen from behind.</p></div>
   <div class="ph light"><h1>Worn with <em style="color:#fff">certainty.</em></h1><p class="ar">زر</p></div>
 </div></section>
 
@@ -186,10 +270,20 @@ footer a{color:var(--gold)}
 </section>
 
 <section class="stackS" id="stackS"><div class="stack">
+  <div class="st-num"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+  <span class="sring r1"></span><span class="sring r2"></span><span class="sring r3"></span>
+  <span class="sp" style="top:30%;left:9%;font-size:22px">✦</span><span class="sp" style="top:62%;right:9%;font-size:26px;animation-delay:1s">✦</span><span class="sp" style="bottom:20%;left:14%;font-size:16px;animation-delay:2s">✦</span>
+  <div class="st-top"><div class="eyebrow">The edit</div><h2>Four moods, <em>one zir.</em></h2></div>
   <div class="L"><span>Everyday</span><span>Spring</span><span>Linen,</span><span>Polka,</span></div>
   <div class="box"><img src="img/crops/st-blazer.jpg" alt=""><img src="img/crops/st-floral.jpg" alt=""><img src="img/crops/st-linen.jpg" alt=""><img src="img/crops/st-polka.jpg" alt=""></div>
   <div class="R"><span>cuts that work.</span><span>flowers, worn.</span><span>for warm days.</span><span>for her day.</span></div>
-  <div class="cnt">THE EDIT</div>
+  <div class="st-cap">
+    <div><b>Blazer Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Spring Floral Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Yellow Linen Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Polka Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com/%D8%B9%D8%A8%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D9%86%D9%82%D8%A7%D8%B7/p1771985853" target="_blank" rel="noopener">Shop</a></div>
+  </div>
+  <div class="st-dots"><i></i><i></i><i></i><i></i></div>
 </div></section>
 
 <section class="care" id="care">
@@ -259,8 +353,8 @@ const sp1=split($('#split')),sp2=split($('#split2'));
 $$('.w').forEach(w=>{w.style.opacity=.15;w.style.filter='blur(8px)'});
 function words(ws,p){const n=ws.length;ws.forEach((w,i)=>{const t=cl(p*(n+2)-i);w.style.opacity=.15+.85*t;w.style.filter='blur('+(8*(1-t))+'px)'})}
 
-const heroS=$('#heroS'),hero=$('#hero'),arch=$('#arch'),aimgs=$$('img',arch),phs=$$('.ph',hero),big=$('#big'),hint=$('.hint');
-const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img');
+const heroS=$('#heroS'),hero=$('#hero');
+const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img'),Nums=$$('.st-num span'),Caps=$$('.st-cap>div'),Dots=$$('.st-dots i');
 const fullS=$('#fullS'),full=$('#full'),fimg=$('img',full);
 const care=$('#care'),cz=$('#cz'),c1=$('#c1'),c2=$('#c2'),nav=$('#nav'),rib=$('#rib1'),say=$('#say');
 const prog=el=>{const r=el.getBoundingClientRect();return cl(-r.top/(r.height-innerHeight))};
@@ -269,22 +363,7 @@ let lastY=0,ticking=false;
 function frame(){
   ticking=false;const y=scrollY,V=innerHeight,W=innerWidth;
 
-  /* hero */
-  const p=prog(heroS),cs=[.12,.32,.52,.74];
-  phs.forEach((el,i)=>{const d=Math.abs(p-cs[i]);
-    const a=i===3?cl((p-.62)/.08)*(1-cl((p-.95)/.05)):cl(1-(d-.07)/.07);
-    el.style.opacity=a;el.style.filter='blur('+((1-a)*12)+'px)';el.style.transform='translateY('+((p<cs[i]?1:-1)*(1-a)*28)+'px)'});
-  aimgs.forEach((el,i)=>{let a=i===0?(p<.2?1:cl(1-(p-.2)/.1)):cl(1-Math.abs(p-cs[i])/.12);if(i===3&&p>cs[3])a=1;
-    el.style.opacity=a;el.style.transform='scale('+(1.2-p*.2)+')'});
-  /* arch grows to full screen at the end */
-  const g=cl((p-.8)/.2),ge=g*g*(3-2*g);
-  const bw=Math.min(340,W*.7),bh=Math.min(470,V*.56);
-  arch.style.width=lerp(bw,W,ge)+'px';arch.style.height=lerp(bh,V,ge)+'px';
-  arch.style.borderRadius=lerp(999,0,ge)+'px '+lerp(999,0,ge)+'px '+lerp(28,0,ge)+'px '+lerp(28,0,ge)+'px';
-  arch.style.transform='translate(-50%,'+lerp(-52,-50,ge)+'%) rotate('+(Math.sin(p*9)*2.2*(1-ge))+'deg)';
-  arch.style.boxShadow=ge>.5?'none':'';
-  big.style.transform='translateY('+(p*-14)+'vh) scale('+(1+p*.25)+')';big.style.opacity=1-ge;
-  hint.style.opacity=cl(1-p*14);
+
 
   /* headline words */
   words(sp1,cl((V*.92-$('#split').getBoundingClientRect().top)/(V*.5)));
@@ -296,7 +375,10 @@ function frame(){
   /* stack */
   const N=Ls.length,q=cl(prog(stackS)*N,.5,N-.5);
   Ls.forEach((el,k)=>{const d=q-(k+.5),a=cl((.62-Math.abs(d))/.24);
-    [el,Rs[k]].forEach(n=>{n.style.opacity=a;n.style.transform='translateY('+(d*-38)+'px)';n.style.filter='blur('+((1-a)*8)+'px)'})});
+    [el,Rs[k]].forEach(n=>{n.style.opacity=a;n.style.transform='translateY('+(d*-38)+'px)';n.style.filter='blur('+((1-a)*8)+'px)'});
+    Nums[k].style.opacity=a*.9;Nums[k].style.transform='translate(-50%,calc(-50% + '+(d*-50)+'px)) scale('+(1+d*.06)+')';
+    Caps[k].style.opacity=a;Caps[k].style.transform='translateY('+(d*-24)+'px)';
+    Dots[k].classList.toggle('on',Math.abs(d)<.5)});
   Bs.forEach((im,k)=>{const t=k===0?1:cl((q-(k-.12))/.5);im.style.transform='translateY('+((1-t)*104)+'%)';im.style.zIndex=k});
 
   /* button motif */
@@ -325,6 +407,128 @@ const io2=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)retur
   const el=x.target,txt=el.textContent,m=txt.match(/^\d+/);if(!m||reduce)return;const to=+m[0],suf=txt.slice(m[0].length),t0=performance.now();
   (function s(n){const k=cl((n-t0)/1200);el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+suf;if(k<1)requestAnimationFrame(s)})(t0)}),{threshold:.6});
 $$('.s3 b').forEach(n=>io2.observe(n));
+
+/* ---- stop on each picture: one scroll = one step (hero phrases + stack photos) ---- */
+if(!reduce){
+  const secs=[
+    {el:stackS,t:()=>{const n=Ls.length;return Array.from({length:n},(_,k)=>k===0?0:(k+.5)/n)}}
+  ];
+  let anim=false,lockUntil=0,lastW=0,lastA=0,touching=false,tStart=0,tDone=false,timer;
+  const info=sc=>{const r=sc.el.getBoundingClientRect(),top=r.top+scrollY,H=sc.el.offsetHeight-innerHeight;return{top,H,T:sc.t().map(f=>top+H*f)}};
+  const where=y=>{for(const sc of secs){const i=info(sc);if(y>=i.top-1&&y<=i.top+i.H+1)return i}return null};
+  function target(dir){
+    const y=scrollY,i=where(y);if(!i)return null;const tol=8;
+    if(dir>0){const f=i.T.find(t=>t>y+tol);return f===undefined?null:f}
+    const b=i.T.filter(t=>t<y-tol);return b.length?b[b.length-1]:null;
+  }
+  let rest={top:null,idx:null};
+  const lowIdx=i=>(i.T[0]>i.top+20)?-1:0;                 /* -1 = resting at the very top of the section */
+  const posOf=(i,k)=>k<0?i.top:i.T[k];
+  const nearestIdx=(i,y)=>{const lo=lowIdx(i);let n=lo;for(let k=lo;k<i.T.length;k++)if(Math.abs(posOf(i,k)-y)<Math.abs(posOf(i,n)-y))n=k;return n};
+  const noteRest=()=>{const i=where(scrollY);if(i&&rest.top!==i.top)rest={top:i.top,idx:nearestIdx(i,scrollY)}};
+  function go(y){
+    const sec=where(y)||where(scrollY);
+    anim=true;const y0=scrollY,d=y-y0,dur=cl(560+Math.abs(d)*.3,560,950),t0=performance.now();
+    const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    (function f(n){const k=cl((n-t0)/dur);scrollTo({top:y0+d*ease(k),behavior:'instant'});
+      if(k<1)requestAnimationFrame(f);
+      else{anim=false;lockUntil=performance.now()+280;
+        if(sec){let idx=sec.T.findIndex(t=>Math.abs(t-y)<3);if(idx<0&&Math.abs(y-sec.top)<3)idx=-1;rest={top:sec.top,idx}}}})(t0);
+  }
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||Math.abs(e.deltaY)<Math.abs(e.deltaX))return;
+    const now=performance.now(),a=Math.abs(e.deltaY);
+    if(anim||now<lockUntil){if(where(scrollY))e.preventDefault();lastW=now;lastA=a;return}
+    const t=target(e.deltaY>0?1:-1);if(t===null)return;
+    e.preventDefault();
+    const fresh=now-lastW>110||a>lastA*1.6;lastW=now;lastA=a;
+    if(fresh)go(t);
+  },{passive:false});
+  addEventListener('touchstart',e=>{touching=true;tStart=e.touches[0].clientY;tDone=false;noteRest()},{passive:true});
+  addEventListener('touchmove',e=>{
+    if(anim||tDone){if(e.cancelable&&where(scrollY))e.preventDefault();return}
+    const dy=tStart-e.touches[0].clientY;if(dy===0)return;
+    const t=target(dy>0?1:-1);if(t===null)return;      /* nothing to step to: normal scrolling */
+    if(e.cancelable)e.preventDefault();                 /* stop the browser's own scroll right away (iOS) */
+    if(Math.abs(dy)>=6&&e.cancelable){tDone=true;go(t)}
+  },{passive:false});
+  addEventListener('touchend',()=>{touching=false;tDone=false});
+  addEventListener('keydown',e=>{
+    const k=e.key,dir=(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey))?1:(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey))?-1:0;
+    if(!dir||e.target.closest('input,textarea,summary,a,button'))return;
+    if(anim){if(where(scrollY))e.preventDefault();return}
+    const t=target(dir);if(t===null)return;e.preventDefault();go(t);
+  });
+  /* when scrolling stops between two pictures, settle on the nearest one (max one step from the last rest) */
+  function settle(){
+    const i=where(scrollY);if(!i)return;const y=scrollY,last=i.T.length-1,lo=lowIdx(i);
+    const near=nearestIdx(i,y);
+    const idx0=rest.top===i.top&&rest.idx!==null?rest.idx:near;
+    if(y>i.T[last]&&idx0===last)return;                 /* leaving through the free end */
+    const idx=Math.max(lo,Math.min(last,Math.max(idx0-1,Math.min(idx0+1,near))));
+    if(Math.abs(posOf(i,idx)-y)>6)go(posOf(i,idx));
+  }
+  addEventListener('scroll',()=>{
+    clearTimeout(timer);if(anim||touching)return;
+    timer=setTimeout(settle,170);
+  },{passive:true});
+}
+/* ---- hero slider: one swipe / scroll / key = one slide. Background, photos and arches all move together ---- */
+(function(){
+  const PIMG=['hero-polka','hero-floral','hero-block','hero-linen','fa-cuff','fa-pin','fa-blazer','fa-gfloral'].map(n=>'img/crops/'+n+'.jpg');
+  PIMG.forEach(src=>{const im=new Image();im.src=src});
+  const phs=$$('.ph',hero),aimgs=$$('.arch img'),dots=$$('.hdots i'),flanks=$$('.fa');
+  let hi=-1,busy=false,lastW=0,lastA=0,tY0=0,tDone=false;
+  const atTop=()=>scrollY<=2;
+  function setFlank(el,src){
+    const [a,b]=$$('img',el),cur=a.classList.contains('on')?a:(b.classList.contains('on')?b:null);
+    if(cur&&cur.getAttribute('src')===src)return;
+    const nxt=cur===a?b:a;nxt.src=src;nxt.classList.add('on');if(cur)cur.classList.remove('on');
+  }
+  function setHero(n){
+    hi=n;hero.dataset.i=n;hero.style.setProperty('--i',n);
+    const s=Math.min(n,3);
+    aimgs.forEach((im,k)=>im.classList.toggle('on',k===s));
+    phs.forEach((p,k)=>p.classList.toggle('on',k===n));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===n));
+    flanks.forEach((f,k)=>setFlank(f,PIMG[(s+4+k)%8]));
+  }
+  function animScroll(y,dur,done){
+    const y0=scrollY,d=y-y0,t0=performance.now(),e=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    (function f(n){const k=cl((n-t0)/dur);scrollTo({top:y0+d*e(k),behavior:'instant'});if(k<1)requestAnimationFrame(f);else done()})(t0);
+  }
+  function step(dir){
+    if(busy)return;
+    if(dir>0&&hi===4){busy=true;animScroll(heroS.offsetHeight,950,()=>{busy=false});return}   /* last slide -> continue down the page */
+    const n=hi+dir;if(n<0||n>4)return;
+    busy=true;setHero(n);setTimeout(()=>{busy=false},950);
+  }
+  setHero(0);
+  /* touch */
+  addEventListener('touchstart',e=>{tY0=e.touches[0].clientY;tDone=false},{passive:true});
+  addEventListener('touchmove',e=>{
+    if(!busy&&!atTop())return;                       /* below the hero: normal page scrolling */
+    if(e.cancelable)e.preventDefault();
+    const dy=tY0-e.touches[0].clientY;
+    if(!tDone&&Math.abs(dy)>=8){tDone=true;step(dy>0?1:-1)}
+  },{passive:false});
+  /* wheel / trackpad */
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||(!busy&&!atTop())||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+    e.preventDefault();
+    const now=performance.now(),a=Math.abs(e.deltaY),fresh=now-lastW>110||a>lastA*1.6;lastW=now;lastA=a;
+    if(fresh)step(e.deltaY>0?1:-1);
+  },{passive:false});
+  /* keyboard */
+  addEventListener('keydown',e=>{
+    if(!atTop()&&!busy)return;if(e.target.closest('input,textarea,summary,a,button'))return;
+    const k=e.key,d=(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey))?1:(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey))?-1:0;
+    if(!d)return;e.preventDefault();step(d);
+  });
+  /* the hero only grabs touches while it fills the screen; below that the page scrolls normally */
+  addEventListener('scroll',()=>{hero.style.touchAction=atTop()?'none':'auto'},{passive:true});
+})();
+
 })();
 </script>
 </body>
