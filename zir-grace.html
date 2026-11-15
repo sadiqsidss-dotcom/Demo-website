@@ -36,9 +36,22 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .heroS{position:relative;height:380vh;background:linear-gradient(var(--oat),var(--pink))}
 .hero{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,var(--blush),var(--oat) 70%)}
 .hero .big{position:absolute;z-index:1;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;will-change:transform;margin-top:-4vh}
-.arch{position:absolute;z-index:2;left:50%;top:50%;width:min(340px,70vw);height:min(470px,56vh);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:width,height,border-radius}
+.arch{position:absolute;z-index:3;left:50%;top:50%;width:min(430px,62vw);height:min(590px,64vh);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);will-change:width,height,border-radius}
 .arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;will-change:opacity,transform}
-.hero .ph{position:absolute;z-index:3;left:0;right:0;bottom:7vh;text-align:center;padding:0 20px;opacity:0;will-change:opacity,transform,filter}
+.ring{position:absolute;z-index:1;left:50%;top:50%;border:1px dashed rgba(185,131,102,.5);border-bottom:0;border-radius:999px 999px 0 0;pointer-events:none;will-change:width,height,opacity}
+.fa{position:absolute;z-index:2;bottom:calc(50% - min(305px,34vh) - 10px);border-radius:999px 999px 24px 24px;overflow:hidden;box-shadow:0 22px 44px var(--shadow),0 0 0 7px #fff,0 0 0 8px var(--rose);will-change:transform,opacity;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+.fa img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.fa.n1{left:calc(50% - min(215px,31vw) - 22px - 190px);width:190px;height:min(380px,42vh);animation-delay:.15s}
+.fa.f1{left:calc(50% - min(215px,31vw) - 22px - 190px - 26px - 160px);width:160px;height:min(290px,32vh);animation-delay:.3s}
+.fa.n2{left:calc(50% + min(215px,31vw) + 22px);width:190px;height:min(340px,38vh);animation-delay:.2s}
+.fa.f2{left:calc(50% + min(215px,31vw) + 22px + 190px + 26px);width:160px;height:min(270px,30vh);animation-delay:.35s}
+@keyframes rise{from{opacity:0;transform:translateY(60px) scale(.94)}to{opacity:1;transform:none}}
+.badge{position:absolute;z-index:4;left:calc(50% + min(215px,31vw) - 62px);top:calc(50% + min(150px,16vh));width:116px;height:116px;border-radius:50%;background:var(--blush);box-shadow:0 12px 26px var(--shadow);display:grid;place-items:center;will-change:opacity}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 16s linear infinite}
+.badge text{font-family:Poppins,sans-serif;font-size:10.4px;letter-spacing:.16em;fill:var(--mocha-d);text-transform:uppercase}
+.badge b{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:25px;color:var(--mocha-d)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .ph{position:absolute;z-index:5;left:0;right:0;bottom:7vh;text-align:center;padding:0 20px;opacity:0;will-change:opacity,transform,filter}
 .hero .ph h1{font-size:clamp(30px,4.6vw,62px);color:var(--ink)}
 .hero .ph.light h1{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
 .hero .ph p{font-size:14px;margin-top:8px;opacity:.8}
@@ -139,7 +152,11 @@ footer .tag{margin:14px 0 34px;font-size:14px;letter-spacing:.2em;text-transform
 .fr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;font-size:12px;opacity:.75;max-width:1180px;margin:0 auto 0;padding-inline:28px}
 footer a{color:var(--gold)}
 
+@media(max-width:1100px){.fa.f1,.fa.f2{display:none}}
 @media(max-width:860px){
+  .fa.n1{left:calc(50% - 31vw - 24vw + 6vw);width:24vw;height:38vh;bottom:calc(50% - 32vh + 20px)}.fa.n2{left:calc(50% + 31vw - 6vw);width:24vw;height:34vh;bottom:calc(50% - 32vh + 20px)}
+  .badge{left:calc(50% + 31vw - 44px);top:calc(50% + 14vh);width:88px;height:88px}.badge b{font-size:19px}.badge text{font-size:9.6px}
+  .fa{box-shadow:0 12px 24px var(--shadow),0 0 0 4px #fff}
   .wrap{padding:0 20px}nav{gap:14px;padding:7px 8px 7px 18px}nav .m{display:none}
   .hero .side{display:none}.hero .ph{bottom:5vh}
   .fl.a{left:-20px;width:100px;height:140px;top:30px}.fl.b{right:-14px;width:90px;height:120px;top:80px}.fl.c,.fl.d{display:none}
@@ -163,6 +180,10 @@ footer a{color:var(--gold)}
   <span class="sp" style="top:18%;left:22%;font-size:26px">✦</span><span class="sp" style="top:30%;right:20%;font-size:18px;animation-delay:.8s">✦</span><span class="sp" style="bottom:26%;left:16%;font-size:20px;animation-delay:1.6s">✦</span><span class="sp" style="top:62%;right:15%;font-size:30px;animation-delay:2.2s">✦</span>
   <div class="side l">Modest abayas</div><div class="side r">Worn with certainty</div>
   <div class="hint">Scroll</div>
+  <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+  <div class="fa f1"><img src="img/crops/fa-block.jpg" alt=""></div><div class="fa n1"><img src="img/crops/fa-cuff.jpg" alt=""></div>
+  <div class="fa n2"><img src="img/crops/fa-pin.jpg" alt=""></div><div class="fa f2"><img src="img/crops/fa-linen.jpg" alt=""></div>
+  <div class="badge" id="badge"><svg viewBox="0 0 120 120"><defs><path id="cp" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#cp" textLength="278" lengthAdjust="spacing">250 SAR ✦ sizes 50–60 ✦ worn softly ✦</textPath></text></svg><b>zir</b></div>
   <div class="arch" id="arch">
     <img src="img/crops/hero-polka.jpg" alt="ZIR polka abaya"><img src="img/crops/hero-floral.jpg" alt="Spring floral abaya"><img src="img/crops/hero-block.jpg" alt="Colour-block abaya"><img src="img/crops/hero-linen.jpg" alt="Yellow linen abaya, seen from behind" style="object-position:50% 72%">
   </div>
@@ -259,6 +280,7 @@ const sp1=split($('#split')),sp2=split($('#split2'));
 $$('.w').forEach(w=>{w.style.opacity=.15;w.style.filter='blur(8px)'});
 function words(ws,p){const n=ws.length;ws.forEach((w,i)=>{const t=cl(p*(n+2)-i);w.style.opacity=.15+.85*t;w.style.filter='blur('+(8*(1-t))+'px)'})}
 
+const rings=$$('.ring'),fas=$$('.fa'),badge=$('#badge');
 const heroS=$('#heroS'),hero=$('#hero'),arch=$('#arch'),aimgs=$$('img',arch),phs=$$('.ph',hero),big=$('#big'),hint=$('.hint');
 const stackS=$('#stackS'),Ls=$$('.L span'),Rs=$$('.R span'),Bs=$$('.box img');
 const fullS=$('#fullS'),full=$('#full'),fimg=$('img',full);
@@ -278,11 +300,14 @@ function frame(){
     el.style.opacity=a;el.style.transform='scale('+(1.2-p*.2)+')'});
   /* arch grows to full screen at the end */
   const g=cl((p-.8)/.2),ge=g*g*(3-2*g);
-  const bw=Math.min(340,W*.7),bh=Math.min(470,V*.56);
+  const bw=Math.min(430,W*.62),bh=Math.min(590,V*.64);
   arch.style.width=lerp(bw,W,ge)+'px';arch.style.height=lerp(bh,V,ge)+'px';
   arch.style.borderRadius=lerp(999,0,ge)+'px '+lerp(999,0,ge)+'px '+lerp(28,0,ge)+'px '+lerp(28,0,ge)+'px';
   arch.style.transform='translate(-50%,'+lerp(-52,-50,ge)+'%) rotate('+(Math.sin(p*9)*2.2*(1-ge))+'deg)';
   arch.style.boxShadow=ge>.5?'none':'';
+  rings.forEach((r,i)=>{const gap=(i+1)*(W<860?22:34);r.style.width=(lerp(bw,W,ge)+gap*2)+'px';r.style.height=(lerp(bh,V,ge)+gap*1.4)+'px';r.style.transform='translate(-50%,'+(-52+(-i*.6))+'%)';r.style.opacity=(1-ge)*(.9-i*.2)});
+  fas.forEach((f,i)=>{const sp=[.18,.3,-.2,-.32][i]||.2;f.style.transform='translateY('+(p*V*sp*-.35)+'px) rotate('+(Math.sin(p*6+i)*1.6)+'deg)';f.style.opacity=cl(1-ge*3)});
+  badge.style.opacity=cl(1-ge*3);badge.style.transform='translateY('+(p*-60)+'px)';
   big.style.transform='translateY('+(p*-14)+'vh) scale('+(1+p*.25)+')';big.style.opacity=1-ge;
   hint.style.opacity=cl(1-p*14);
 
