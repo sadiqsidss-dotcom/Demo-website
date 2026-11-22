@@ -128,6 +128,41 @@ footer .tag{margin:6px 0 20px;font-size:14px;letter-spacing:.1em;opacity:.8}
 footer a{color:var(--gold)}
 .sticky{display:none}
 
+
+/* flying silk scarf (canvas, follows the scroll) */
+#scarf{position:fixed;inset:0;z-index:45;pointer-events:none}
+
+/* "open the abaya" gate: drag the ZIR button to unlock the lookbook */
+.look{position:relative}
+.gate{position:absolute;inset:0;z-index:20;overflow:hidden}
+.gate .pn{position:absolute;top:0;bottom:0;width:50.5%;will-change:transform;box-shadow:0 0 50px rgba(0,0,0,.4);
+  background:linear-gradient(90deg,rgba(0,0,0,.30),transparent 16%,transparent 84%,rgba(0,0,0,.24)),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 3px,rgba(0,0,0,.10) 3px 28px),var(--wine)}
+.gate .pn.l{left:0;border-right:2px solid var(--gold)}
+.gate .pn.r{right:0;border-left:2px solid var(--gold)}
+.gate .thread{position:absolute;left:7%;right:7%;top:64%;border-top:2px dashed rgba(200,162,78,.55);z-index:2;pointer-events:none}
+.gate-tx{position:absolute;z-index:3;left:0;right:0;top:11%;text-align:center;padding:0 24px;pointer-events:none;color:var(--cream)}
+.gate-tx .eyebrow{text-align:center}
+.gate-tx h3{font-size:clamp(26px,3.6vw,44px);margin-bottom:6px}
+.gate-tx p{font-size:15px;opacity:.82}
+.arrows{position:absolute;z-index:3;left:50%;top:64%;transform:translate(-50%,-50%);width:min(380px,84%);display:flex;justify-content:space-between;color:var(--gold);font-size:30px;pointer-events:none;direction:ltr;line-height:1}
+.arrows span{animation:nudgeL 1.5s ease-in-out infinite}.arrows span+span{animation-name:nudgeR}
+@keyframes nudgeL{0%,100%{transform:translateX(0);opacity:.4}50%{transform:translateX(-10px);opacity:1}}
+@keyframes nudgeR{0%,100%{transform:translateX(0);opacity:.4}50%{transform:translateX(10px);opacity:1}}
+.knob{position:absolute;z-index:4;left:50%;top:64%;width:118px;height:118px;margin:-59px 0 0 -59px;border:0;padding:0;border-radius:50%;background:none;cursor:grab;touch-action:pan-y;filter:drop-shadow(0 16px 24px rgba(0,0,0,.55));will-change:transform;-webkit-tap-highlight-color:transparent}
+.knob img{width:100%;height:100%;border-radius:50%;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.knob::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--gold);opacity:.8;animation:pulse 1.9s ease-out infinite;pointer-events:none}
+.knob.drag{cursor:grabbing}.knob.drag::after{animation:none;opacity:0}
+.knob:focus-visible{outline:3px solid var(--gold);outline-offset:6px}
+@keyframes pulse{from{transform:scale(.92);opacity:.85}to{transform:scale(1.55);opacity:0}}
+.look.opening .knob{opacity:0;transition:opacity .45s .25s}
+.look.opening .gate-tx,.look.opening .arrows,.look.opening .thread{opacity:0;transition:opacity .3s}
+.look:not(.opening) .strip figure{opacity:.22;transform:translateY(40px) scale(.94)}
+.look.opening .strip figure{animation:upIn 1s cubic-bezier(.2,.7,.2,1) both}
+.look.opening .strip figure:nth-child(2){animation-delay:.07s}.look.opening .strip figure:nth-child(3){animation-delay:.14s}.look.opening .strip figure:nth-child(4){animation-delay:.21s}.look.opening .strip figure:nth-child(5){animation-delay:.28s}
+@keyframes upIn{from{opacity:.22;transform:translateY(40px) scale(.94)}to{opacity:1;transform:none}}
+.spark{position:absolute;z-index:30;color:var(--gold);pointer-events:none;line-height:1}
+
 @media(max-width:900px){
   body{font-size:16px}.sec{padding:64px 0}
   .nav nav{display:none}
@@ -142,6 +177,7 @@ footer a{color:var(--gold)}
   .why,.steps{grid-template-columns:1fr}.steps{gap:34px}
   .final .ph{min-height:420px;order:-1}.final .ph img{mask-image:linear-gradient(to top,transparent,#000 35%);-webkit-mask-image:linear-gradient(to top,transparent,#000 35%)}
   .final .tx{padding:20px 24px 64px;text-align:center}.final p{margin-inline:auto}
+  .knob{width:96px;height:96px;margin:-48px 0 0 -48px}.arrows{font-size:24px}.gate-tx{top:9%}.gate-tx p{font-size:14px}
   .sticky{display:block;position:fixed;z-index:60;bottom:0;inset-inline:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(246,237,224,.95);border-top:1px solid rgba(92,30,44,.15);transform:translateY(110%);transition:transform .4s}
   .sticky.show{transform:none}.sticky .btn{display:block;text-align:center;width:100%}
 }
@@ -149,6 +185,7 @@ footer a{color:var(--gold)}
 </style>
 </head>
 <body>
+<canvas id="scarf" aria-hidden="true"></canvas>
 
 <header class="nav" id="nav">
   <a href="#top"><img src="img/logo.png" alt="ZIR زر"></a>
@@ -212,6 +249,13 @@ footer a{color:var(--gold)}
     <figure><img src="img/blazer.jpg" alt="عباية البليزر" loading="lazy"></figure>
     <figure><img src="img/pin.jpg" alt="عباية الخطوط الرفيعة" loading="lazy"></figure>
   </div>
+  <div class="gate" id="gate">
+    <div class="pn l"></div><div class="pn r"></div>
+    <div class="thread"></div>
+    <div class="gate-tx"><div class="eyebrow">pull the button</div><h3>افتحي العباية.. وشوفي اللوك</h3><p>اسحبي زر «زر» لليمين أو لليسار.</p></div>
+    <div class="arrows" aria-hidden="true"><span>‹ ‹ ‹</span><span>› › ›</span></div>
+    <button class="knob" id="knob" type="button" aria-label="اسحبي زر زر لفتح اللوك، أو اضغطي Enter"><img src="img/zir-button.png" alt=""></button>
+  </div>
 </section>
 
 <section class="sec" id="order"><div class="wrap">
@@ -259,6 +303,118 @@ function frame(){
 const req=()=>{if(!tick){tick=true;requestAnimationFrame(frame)}};
 if(!reduce){addEventListener('scroll',req,{passive:true});addEventListener('resize',req)}
 frame();
+
+/* ============ flying scarf ============ */
+const cv=$('#scarf'),cx=cv.getContext('2d');
+let W=0,H=0,DPR=1;
+function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}
+size();addEventListener('resize',size);
+const lerp=(a,b,t)=>a+(b-a)*t;
+let gust=0;window.__gust=g=>{gust=Math.max(gust,g)};
+class Scarf{
+  constructor(o){Object.assign(this,o);this.P=Array.from({length:o.n},()=>({x:0,y:0,px:0,py:0}));this.ready=false;this.ax=0;this.ay=0}
+  step(tx,ty,t,vel,S){
+    const P=this.P,n=this.n,seg=this.seg*S;
+    if(!this.ready){this.ax=tx;this.ay=ty;P.forEach((p,i)=>{p.x=p.px=tx-i*seg*.4;p.y=p.py=ty+i*seg*.2});this.ready=true}
+    this.ax=lerp(this.ax,tx,.16);this.ay=lerp(this.ay,ty,.16);
+    P[0].x=this.ax;P[0].y=this.ay;
+    /* the wind pushes the tail from the anchor towards the middle of the screen */
+    let cx0=W/2-this.ax,cy0=H*.5-this.ay;const cl0=Math.hypot(cx0,cy0)||1;cx0/=cl0;cy0/=cl0;
+    const hb=this.hb||0;let dx=lerp(cx0,-.8,hb),dy=lerp(cy0,-.6,hb);const dl=Math.hypot(dx,dy)||1;dx/=dl;dy/=dl;
+    for(let i=1;i<n;i++){
+      const p=P[i],s=i/n,vx=(p.x-p.px)*.962,vy=(p.y-p.py)*.962;p.px=p.x;p.py=p.y;
+      const flutter=Math.sin(t*2.2+i*.55+this.phase);
+      p.x+=vx+dx*.62*(.4+s)*S+flutter*.28*S-gust*.7*s*S*Math.sign(dx||1);
+      p.y+=vy+dy*.45*(.4+s)*S+Math.sin(t*1.7+i*.7+this.phase)*.5*S-vel*.05*s*S+gust*.5*s*S*Math.sin(t*5+i);
+    }
+    for(let k=0;k<4;k++){
+      for(let i=1;i<n;i++){
+        const a=P[i-1],b=P[i];let ddx=b.x-a.x,ddy=b.y-a.y;const d=Math.hypot(ddx,ddy)||1,diff=(d-seg)/d;
+        if(i===1){b.x-=ddx*diff;b.y-=ddy*diff}else{a.x+=ddx*diff*.5;a.y+=ddy*diff*.5;b.x-=ddx*diff*.5;b.y-=ddy*diff*.5}
+      }
+      P[0].x=this.ax;P[0].y=this.ay;
+    }
+  }
+  draw(t,S,alpha){
+    const P=this.P,n=this.n;if(alpha<=.01)return;
+    for(let i=0;i<n-1;i++){
+      const a=P[i],b=P[i+1],s=i/(n-1);
+      const tx=b.x-a.x,ty=b.y-a.y,tl=Math.hypot(tx,ty)||1,nx=-ty/tl,ny=tx/tl;
+      /* silk twist: the ribbon turns as it flies, so the width and shade change along it */
+      const tw=Math.cos(t*1.5+i*.34+this.phase);
+      const wa=this.w*S*(.28+.72*Math.pow(Math.sin(Math.PI*Math.min(1,s*1.18)),.75))*(.46+.54*Math.abs(tw));
+      const c=tw>0?this.c1:this.c2,sh=.78+.22*Math.abs(tw);
+      const a2=P[i+1],wb=this.w*S*(.28+.72*Math.pow(Math.sin(Math.PI*Math.min(1,(i+1)/(n-1)*1.18)),.75))*(.46+.54*Math.abs(Math.cos(t*1.5+(i+1)*.34+this.phase)));
+      const nx2=nx,ny2=ny;
+      cx.beginPath();
+      cx.moveTo(a.x+nx*wa/2,a.y+ny*wa/2);cx.lineTo(a2.x+nx2*wb/2,a2.y+ny2*wb/2);
+      cx.lineTo(a2.x-nx2*wb/2,a2.y-ny2*wb/2);cx.lineTo(a.x-nx*wa/2,a.y-ny*wa/2);cx.closePath();
+      const fade=alpha*(.35+.65*Math.min(1,(1-s)*2.2));
+      cx.fillStyle='rgba('+Math.round(c[0]*sh)+','+Math.round(c[1]*sh)+','+Math.round(c[2]*sh)+','+(this.alpha*fade).toFixed(3)+')';
+      cx.fill();
+      cx.strokeStyle='rgba(255,246,230,'+(0.10*fade).toFixed(3)+')';cx.lineWidth=.6;cx.stroke();
+    }
+  }
+}
+const scarf1=new Scarf({n:44,seg:11.5,w:74,c1:[208,168,128],c2:[165,118,88],alpha:.56,phase:0});
+const scarf2=new Scarf({n:36,seg:10,w:50,c1:[238,200,190],c2:[208,156,156],alpha:.5,phase:2.4});
+let lastScr=scrollY,vel=0,T0=performance.now();
+function path(u,ph){return[W*(.5+.36*Math.cos(u*9+ph)),H*(.34+.2*Math.sin(u*7+ph*.6))]}
+function loop(now){
+  const t=(now-T0)/1000,y=scrollY;vel=lerp(vel,cl(y-lastScr,-70,70),.2);lastScr=y;gust*=.955;
+  const doc=Math.max(1,document.documentElement.scrollHeight-H),u=y/doc,S=cl(Math.min(W,H)/700,.6,1.25);
+  cx.clearRect(0,0,W,H);
+  /* it starts on the model's head in the hero, then lifts off and flies with the scroll */
+  const arch=$('.arch'),r=arch.getBoundingClientRect(),b=cl(y/(H*.55));
+  const head=[r.left+r.width*.66,r.top+r.height*.13],fly=path(u,.8);
+  scarf1.hb=1-b;scarf1.step(lerp(head[0],fly[0],b),lerp(head[1],fly[1],b),t,vel,S);scarf1.draw(t,S,1);
+  const f2=path(u+.05,3.1);scarf2.step(f2[0],f2[1]+H*.12,t,vel,S);scarf2.draw(t,S,cl(b*1.4));
+  requestAnimationFrame(loop);
+}
+if(reduce){cv.style.display='none'}else{requestAnimationFrame(loop)}
+
+/* ============ the ZIR button: drag it to open the abaya and unlock the lookbook ============ */
+(function(){
+  const look=$('#look'),gate=$('#gate'),knob=$('#knob'),pl=$('.pn.l',gate),pr=$('.pn.r',gate),gtx=$('.gate-tx',gate),arrows=$('.arrows',gate);
+  let dx=0,drag=false,sx=0,opened=false,raf=0;
+  const R=()=>look.clientWidth*.42;
+  function apply(){
+    const p=cl(Math.abs(dx)/R());
+    pl.style.transform='translateX('+(-p*100)+'%)';pr.style.transform='translateX('+(p*100)+'%)';
+    knob.style.transform='translateX('+dx+'px) rotate('+(dx*.5)+'deg)';
+    gtx.style.opacity=1-cl(p*2.2);arrows.style.opacity=1-cl(p*3);
+  }
+  function anim(to,dur,ease,done){
+    const from=dx,t0=performance.now();cancelAnimationFrame(raf);
+    (function f(n){const k=cl((n-t0)/dur);dx=from+(to-from)*ease(k);apply();if(k<1)raf=requestAnimationFrame(f);else if(done)done()})(t0);
+  }
+  const easeOut=k=>1-Math.pow(1-k,3),easeBack=k=>{const c=2.70158;return 1+c*Math.pow(k-1,3)+1.70158*Math.pow(k-1,2)};
+  function burst(){
+    const r=look.getBoundingClientRect(),kr=knob.getBoundingClientRect(),ox=kr.left-r.left+kr.width/2,oy=kr.top-r.top+kr.height/2;
+    for(let i=0;i<26;i++){
+      const e=document.createElement('span');e.className='spark';e.textContent='✦';e.style.left=ox+'px';e.style.top=oy+'px';e.style.fontSize=(10+Math.random()*20)+'px';look.appendChild(e);
+      const ang=Math.random()*Math.PI*2,dist=90+Math.random()*260;
+      e.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},{transform:'translate(calc(-50% + '+Math.cos(ang)*dist+'px),calc(-50% + '+Math.sin(ang)*dist+'px)) scale(.2) rotate(200deg)',opacity:0}],{duration:900+Math.random()*700,easing:'cubic-bezier(.2,.7,.2,1)'}).onfinish=()=>e.remove();
+    }
+  }
+  function unlock(dir){
+    if(opened)return;opened=true;drag=false;knob.classList.remove('drag');look.classList.add('opening');
+    anim(dir*R()*1.1,680,easeOut,()=>{gate.style.display='none';look.classList.add('open')});
+    burst();window.__gust(1.7);if(navigator.vibrate)navigator.vibrate(18);
+  }
+  knob.addEventListener('pointerdown',e=>{if(opened)return;drag=true;sx=e.clientX-dx;knob.setPointerCapture(e.pointerId);cancelAnimationFrame(raf);knob.classList.add('drag')});
+  knob.addEventListener('pointermove',e=>{
+    if(!drag)return;dx=cl(e.clientX-sx,-R()*1.05,R()*1.05);apply();window.__gust(.35);
+    if(Math.abs(dx)/R()>.9)unlock(Math.sign(dx));
+  });
+  const end=()=>{if(!drag)return;drag=false;knob.classList.remove('drag');if(Math.abs(dx)/R()>.5)unlock(Math.sign(dx)||1);else anim(0,520,easeBack)};
+  knob.addEventListener('pointerup',end);knob.addEventListener('pointercancel',end);
+  knob.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '||e.key==='ArrowRight'){e.preventDefault();unlock(1)}
+    else if(e.key==='ArrowLeft'){e.preventDefault();unlock(-1)}
+  });
+  addEventListener('resize',apply);
+})();
 })();
 </script>
 </body>
