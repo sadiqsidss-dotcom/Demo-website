@@ -129,8 +129,8 @@ footer a{color:var(--gold)}
 .sticky{display:none}
 
 
-/* flying silk scarf (canvas, follows the scroll) */
-#scarf{position:fixed;inset:0;z-index:45;pointer-events:none}
+/* scarf transition: appears only while scrolling down out of the hero banner */
+.scarf-tr{position:fixed;left:50%;top:50%;z-index:45;height:135vh;height:135svh;width:auto;max-width:none;pointer-events:none;opacity:0;visibility:hidden;will-change:transform,opacity;filter:drop-shadow(0 34px 44px rgba(63,18,32,.38))}
 
 /* "open the abaya" gate: drag the ZIR button to unlock the lookbook */
 .look{position:relative}
@@ -164,6 +164,7 @@ footer a{color:var(--gold)}
 .spark{position:absolute;z-index:30;color:var(--gold);pointer-events:none;line-height:1}
 
 @media(max-width:900px){
+  .scarf-tr{height:92vh;height:92svh}
   body{font-size:16px}.sec{padding:64px 0}
   .nav nav{display:none}
   .hero{grid-template-columns:1fr;padding:100px 22px 50px;text-align:center;gap:38px}
@@ -185,7 +186,7 @@ footer a{color:var(--gold)}
 </style>
 </head>
 <body>
-<canvas id="scarf" aria-hidden="true"></canvas>
+<img id="scarfTr" class="scarf-tr" src="img/scarf.png" alt="" aria-hidden="true" onerror="this.remove()">
 
 <header class="nav" id="nav">
   <a href="#top"><img src="img/logo.png" alt="ZIR زر"></a>
@@ -304,75 +305,6 @@ const req=()=>{if(!tick){tick=true;requestAnimationFrame(frame)}};
 if(!reduce){addEventListener('scroll',req,{passive:true});addEventListener('resize',req)}
 frame();
 
-/* ============ flying scarf ============ */
-const cv=$('#scarf'),cx=cv.getContext('2d');
-let W=0,H=0,DPR=1;
-function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}
-size();addEventListener('resize',size);
-const lerp=(a,b,t)=>a+(b-a)*t;
-let gust=0;window.__gust=g=>{gust=Math.max(gust,g)};
-class Scarf{
-  constructor(o){Object.assign(this,o);this.P=Array.from({length:o.n},()=>({x:0,y:0,px:0,py:0}));this.ready=false;this.ax=0;this.ay=0}
-  step(tx,ty,t,vel,S){
-    const P=this.P,n=this.n,seg=this.seg*S;
-    if(!this.ready){this.ax=tx;this.ay=ty;P.forEach((p,i)=>{p.x=p.px=tx-i*seg*.4;p.y=p.py=ty+i*seg*.2});this.ready=true}
-    this.ax=lerp(this.ax,tx,.16);this.ay=lerp(this.ay,ty,.16);
-    P[0].x=this.ax;P[0].y=this.ay;
-    /* the wind pushes the tail from the anchor towards the middle of the screen */
-    let cx0=W/2-this.ax,cy0=H*.5-this.ay;const cl0=Math.hypot(cx0,cy0)||1;cx0/=cl0;cy0/=cl0;
-    const hb=this.hb||0;let dx=lerp(cx0,-.8,hb),dy=lerp(cy0,-.6,hb);const dl=Math.hypot(dx,dy)||1;dx/=dl;dy/=dl;
-    for(let i=1;i<n;i++){
-      const p=P[i],s=i/n,vx=(p.x-p.px)*.962,vy=(p.y-p.py)*.962;p.px=p.x;p.py=p.y;
-      const flutter=Math.sin(t*2.2+i*.55+this.phase);
-      p.x+=vx+dx*.62*(.4+s)*S+flutter*.28*S-gust*.7*s*S*Math.sign(dx||1);
-      p.y+=vy+dy*.45*(.4+s)*S+Math.sin(t*1.7+i*.7+this.phase)*.5*S-vel*.05*s*S+gust*.5*s*S*Math.sin(t*5+i);
-    }
-    for(let k=0;k<4;k++){
-      for(let i=1;i<n;i++){
-        const a=P[i-1],b=P[i];let ddx=b.x-a.x,ddy=b.y-a.y;const d=Math.hypot(ddx,ddy)||1,diff=(d-seg)/d;
-        if(i===1){b.x-=ddx*diff;b.y-=ddy*diff}else{a.x+=ddx*diff*.5;a.y+=ddy*diff*.5;b.x-=ddx*diff*.5;b.y-=ddy*diff*.5}
-      }
-      P[0].x=this.ax;P[0].y=this.ay;
-    }
-  }
-  draw(t,S,alpha){
-    const P=this.P,n=this.n;if(alpha<=.01)return;
-    for(let i=0;i<n-1;i++){
-      const a=P[i],b=P[i+1],s=i/(n-1);
-      const tx=b.x-a.x,ty=b.y-a.y,tl=Math.hypot(tx,ty)||1,nx=-ty/tl,ny=tx/tl;
-      /* silk twist: the ribbon turns as it flies, so the width and shade change along it */
-      const tw=Math.cos(t*1.5+i*.34+this.phase);
-      const wa=this.w*S*(.28+.72*Math.pow(Math.sin(Math.PI*Math.min(1,s*1.18)),.75))*(.46+.54*Math.abs(tw));
-      const c=tw>0?this.c1:this.c2,sh=.78+.22*Math.abs(tw);
-      const a2=P[i+1],wb=this.w*S*(.28+.72*Math.pow(Math.sin(Math.PI*Math.min(1,(i+1)/(n-1)*1.18)),.75))*(.46+.54*Math.abs(Math.cos(t*1.5+(i+1)*.34+this.phase)));
-      const nx2=nx,ny2=ny;
-      cx.beginPath();
-      cx.moveTo(a.x+nx*wa/2,a.y+ny*wa/2);cx.lineTo(a2.x+nx2*wb/2,a2.y+ny2*wb/2);
-      cx.lineTo(a2.x-nx2*wb/2,a2.y-ny2*wb/2);cx.lineTo(a.x-nx*wa/2,a.y-ny*wa/2);cx.closePath();
-      const fade=alpha*(.35+.65*Math.min(1,(1-s)*2.2));
-      cx.fillStyle='rgba('+Math.round(c[0]*sh)+','+Math.round(c[1]*sh)+','+Math.round(c[2]*sh)+','+(this.alpha*fade).toFixed(3)+')';
-      cx.fill();
-      cx.strokeStyle='rgba(255,246,230,'+(0.10*fade).toFixed(3)+')';cx.lineWidth=.6;cx.stroke();
-    }
-  }
-}
-const scarf1=new Scarf({n:44,seg:11.5,w:74,c1:[208,168,128],c2:[165,118,88],alpha:.56,phase:0});
-const scarf2=new Scarf({n:36,seg:10,w:50,c1:[238,200,190],c2:[208,156,156],alpha:.5,phase:2.4});
-let lastScr=scrollY,vel=0,T0=performance.now();
-function path(u,ph){return[W*(.5+.36*Math.cos(u*9+ph)),H*(.34+.2*Math.sin(u*7+ph*.6))]}
-function loop(now){
-  const t=(now-T0)/1000,y=scrollY;vel=lerp(vel,cl(y-lastScr,-70,70),.2);lastScr=y;gust*=.955;
-  const doc=Math.max(1,document.documentElement.scrollHeight-H),u=y/doc,S=cl(Math.min(W,H)/700,.6,1.25);
-  cx.clearRect(0,0,W,H);
-  /* it starts on the model's head in the hero, then lifts off and flies with the scroll */
-  const arch=$('.arch'),r=arch.getBoundingClientRect(),b=cl(y/(H*.55));
-  const head=[r.left+r.width*.66,r.top+r.height*.13],fly=path(u,.8);
-  scarf1.hb=1-b;scarf1.step(lerp(head[0],fly[0],b),lerp(head[1],fly[1],b),t,vel,S);scarf1.draw(t,S,1);
-  const f2=path(u+.05,3.1);scarf2.step(f2[0],f2[1]+H*.12,t,vel,S);scarf2.draw(t,S,cl(b*1.4));
-  requestAnimationFrame(loop);
-}
-if(reduce){cv.style.display='none'}else{requestAnimationFrame(loop)}
-
 /* ============ the ZIR button: drag it to open the abaya and unlock the lookbook ============ */
 (function(){
   const look=$('#look'),gate=$('#gate'),knob=$('#knob'),pl=$('.pn.l',gate),pr=$('.pn.r',gate),gtx=$('.gate-tx',gate),arrows=$('.arrows',gate);
@@ -400,11 +332,11 @@ if(reduce){cv.style.display='none'}else{requestAnimationFrame(loop)}
   function unlock(dir){
     if(opened)return;opened=true;drag=false;knob.classList.remove('drag');look.classList.add('opening');
     anim(dir*R()*1.1,680,easeOut,()=>{gate.style.display='none';look.classList.add('open')});
-    burst();window.__gust(1.7);if(navigator.vibrate)navigator.vibrate(18);
+    burst();if(navigator.vibrate)navigator.vibrate(18);
   }
   knob.addEventListener('pointerdown',e=>{if(opened)return;drag=true;sx=e.clientX-dx;knob.setPointerCapture(e.pointerId);cancelAnimationFrame(raf);knob.classList.add('drag')});
   knob.addEventListener('pointermove',e=>{
-    if(!drag)return;dx=cl(e.clientX-sx,-R()*1.05,R()*1.05);apply();window.__gust(.35);
+    if(!drag)return;dx=cl(e.clientX-sx,-R()*1.05,R()*1.05);apply();
     if(Math.abs(dx)/R()>.9)unlock(Math.sign(dx));
   });
   const end=()=>{if(!drag)return;drag=false;knob.classList.remove('drag');if(Math.abs(dx)/R()>.5)unlock(Math.sign(dx)||1);else anim(0,520,easeBack)};
@@ -414,6 +346,23 @@ if(reduce){cv.style.display='none'}else{requestAnimationFrame(loop)}
     else if(e.key==='ArrowLeft'){e.preventDefault();unlock(-1)}
   });
   addEventListener('resize',apply);
+})();
+
+/* ============ scarf transition: only while you scroll down out of the hero banner ============ */
+(function(){
+  const sc=$('#scarfTr'),hero=$('.hero');if(!sc||reduce)return;
+  const lerp=(a,b,t)=>a+(b-a)*t;let tk=false;
+  function upd(){
+    tk=false;const y=scrollY,W=innerWidth,H=innerHeight,p=cl((y-H*.16)/H);
+    if(p<=0||p>=1){sc.style.visibility='hidden';sc.style.opacity=0;hero.style.opacity='';return}
+    const x=lerp(.62,-.62,p)*W,yy=lerp(1.05,-1.05,p)*H,rot=lerp(26,-24,p),ry=lerp(-38,38,p),scl=.72+.5*Math.sin(Math.PI*p);
+    sc.style.visibility='visible';
+    sc.style.transform='translate(calc(-50% + '+x+'px),calc(-50% + '+yy+'px)) perspective(1400px) rotateY('+ry+'deg) rotate('+rot+'deg) scale('+scl+')';
+    sc.style.opacity=Math.min(1,p/.1,(1-p)/.12);
+    hero.style.opacity=1-cl((p-.2)/.45)*.9;
+  }
+  const req=()=>{if(!tk){tk=true;requestAnimationFrame(upd)}};
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);upd();
 })();
 })();
 </script>

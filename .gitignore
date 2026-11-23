@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# licensed scarf image: add the clean (purchased) file here yourself; the preview used a watermarked stock image
+landing/img/scarf.png
