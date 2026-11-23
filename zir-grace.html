@@ -35,22 +35,22 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 /* hero (pinned) */
 /* hero: a real slider. one swipe = one slide */
 .heroS{position:relative;height:100vh;height:100svh;background:var(--oat)}
-.hero{position:relative;height:100%;overflow:hidden;display:grid;place-items:center;touch-action:none;--aw:min(430px,62vw);--ah:min(590px,64svh);--i:0}
+.hero{position:relative;height:100%;overflow:hidden;display:grid;place-items:center;touch-action:none;--aw:min(430px,62vw);--ah:min(570px,60svh);--i:0}
 .bgs,.bgs i{position:absolute;inset:0;z-index:0}
 .bgs i{opacity:0;transition:opacity 1.2s ease}
-.bgs i:nth-child(1){background:radial-gradient(circle at 50% 38%,#F6DDD6,#F7EFE6 72%)}
-.bgs i:nth-child(2){background:radial-gradient(circle at 50% 38%,#E2DAEC,#F5E9E8 72%)}
-.bgs i:nth-child(3){background:radial-gradient(circle at 50% 38%,#EBD2BC,#F7EBDF 72%)}
+.bgs i:nth-child(1){background:radial-gradient(circle at 50% 38%,#EEC9CB,#F8ECE6 72%)}
+.bgs i:nth-child(2){background:radial-gradient(circle at 50% 38%,#F0DCC2,#F9F1E4 72%)}
+.bgs i:nth-child(3){background:radial-gradient(circle at 50% 38%,#DADCEC,#F5ECEB 72%)}
 .bgs i:nth-child(4){background:radial-gradient(circle at 50% 38%,#F3E7B0,#FBF5E1 72%)}
 .hero[data-i="0"] .bgs i:nth-child(1),.hero[data-i="1"] .bgs i:nth-child(2),.hero[data-i="2"] .bgs i:nth-child(3),.hero[data-i="3"] .bgs i:nth-child(4),.hero[data-i="4"] .bgs i:nth-child(4){opacity:1}
 .blob{position:absolute;z-index:0;border-radius:50%;filter:blur(42px);transition:transform 1.6s cubic-bezier(.2,.7,.2,1),background 1.2s;will-change:transform;pointer-events:none}
 .blob.b1{width:48vw;height:48vw;left:-12vw;top:-8vw;background:rgba(235,207,194,.75);transform:translate(calc(var(--i)*10vw),calc(var(--i)*6svh))}
 .blob.b2{width:42vw;height:42vw;right:-10vw;bottom:-12vw;background:rgba(212,169,78,.30);transform:translate(calc(var(--i)*-9vw),calc(var(--i)*-5svh))}
 .blob.b3{width:30vw;height:30vw;left:36vw;top:56svh;background:rgba(231,184,176,.5);transform:translate(calc(var(--i)*-6vw),calc(var(--i)*-9svh))}
-.hero[data-i="1"] .b1{background:rgba(205,196,232,.7)}.hero[data-i="2"] .b1{background:rgba(228,190,150,.7)}.hero[data-i="3"] .b1,.hero[data-i="4"] .b1{background:rgba(244,226,140,.65)}
-.hero[data-i="1"] .b3{background:rgba(190,170,225,.45)}.hero[data-i="2"] .b3{background:rgba(214,160,120,.45)}.hero[data-i="3"] .b3,.hero[data-i="4"] .b3{background:rgba(235,215,110,.45)}
+.hero[data-i="1"] .b1{background:rgba(228,190,150,.7)}.hero[data-i="2"] .b1{background:rgba(205,196,232,.7)}.hero[data-i="3"] .b1,.hero[data-i="4"] .b1{background:rgba(244,226,140,.65)}
+.hero[data-i="1"] .b3{background:rgba(214,160,120,.45)}.hero[data-i="2"] .b3{background:rgba(190,170,225,.45)}.hero[data-i="3"] .b3,.hero[data-i="4"] .b3{background:rgba(235,215,110,.45)}
 .hero .big{position:absolute;z-index:1;left:50%;top:50%;font-family:Fraunces,serif;font-style:italic;font-size:clamp(220px,40vw,640px);line-height:.8;color:var(--pink);letter-spacing:-.05em;user-select:none;pointer-events:none;transform:translate(calc(-50% + var(--i)*-6vw),-54%) rotate(calc(var(--i)*-3deg));transition:transform 1.5s cubic-bezier(.2,.7,.2,1),color 1.2s,opacity .8s}
-.hero[data-i="1"] .big{color:#D9CFE6}.hero[data-i="2"] .big{color:#E4C9AE}.hero[data-i="3"] .big{color:#EEDF9A}.hero[data-i="4"] .big{opacity:0}
+.hero[data-i="1"] .big{color:#E4C9AE}.hero[data-i="2"] .big{color:#D9CFE6}.hero[data-i="3"] .big{color:#EEDF9A}.hero[data-i="4"] .big{opacity:0}
 .hsp{translate:calc(var(--i)*var(--mx,-3vw)) calc(var(--i)*var(--my,2svh));transition:translate 1.5s cubic-bezier(.2,.7,.2,1)}
 .arch{position:absolute;z-index:3;left:50%;top:50%;width:var(--aw);height:var(--ah);transform:translate(-50%,-52%);border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 30px 60px var(--shadow),0 0 0 10px #fff,0 0 0 11px var(--rose);transition:width 1.05s cubic-bezier(.65,0,.2,1),height 1.05s cubic-bezier(.65,0,.2,1),border-radius 1.05s cubic-bezier(.65,0,.2,1),transform 1.05s cubic-bezier(.65,0,.2,1),box-shadow .6s}
 .arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:0;transform:scale(1.16);transition:opacity .95s ease,transform 1.5s cubic-bezier(.2,.7,.2,1)}
@@ -74,8 +74,10 @@ nav .btn{padding:9px 20px;font-size:12px;box-shadow:none}
 .badge text{font-family:Poppins,sans-serif;font-size:10.4px;letter-spacing:.16em;fill:var(--mocha-d);text-transform:uppercase}
 .badge b{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:25px;color:var(--mocha-d)}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero .ph{position:absolute;z-index:5;left:0;right:0;bottom:7svh;text-align:center;padding:0 20px;opacity:0;transform:translateY(26px);filter:blur(10px);pointer-events:none;transition:opacity .8s .3s,transform .9s .3s cubic-bezier(.2,.7,.2,1),filter .8s .3s}
+.hero .ph{position:absolute;z-index:5;left:0;right:0;bottom:4.5svh;text-align:center;padding:0 20px;opacity:0;transform:translateY(26px);filter:blur(10px);pointer-events:none;transition:opacity .8s .3s,transform .9s .3s cubic-bezier(.2,.7,.2,1),filter .8s .3s}
 .hero .ph.on{opacity:1;transform:none;filter:none}
+.hero .ph .kick{display:block;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mocha-d);margin-bottom:8px}
+.hero .ph.light .kick{color:#fff;opacity:.92}
 .hero .ph h1{font-size:clamp(30px,4.6vw,62px);color:var(--ink)}
 .hero .ph.light h1{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
 .hero .ph p{font-size:14px;margin-top:8px;opacity:.8}
@@ -212,7 +214,7 @@ footer a{color:var(--gold)}
   .badge{left:calc(50% + var(--aw)/2 - 44px);top:calc(50% + 12svh);width:88px;height:88px}.badge b{font-size:19px}.badge text{font-size:9.6px}
   .fa{box-shadow:0 12px 24px var(--shadow),0 0 0 4px #fff}
   .wrap{padding:0 20px}nav{gap:14px;padding:7px 8px 7px 18px}nav .m{display:none}
-  .hero .side{display:none}.hero .ph{bottom:5svh}
+  .hero .side{display:none}.hero .ph{bottom:4.5svh}
   .fl.a{left:6vw;top:44px;width:40vw;height:57vw}.fl.b{right:6vw;top:92px;width:34vw;height:49vw}.fl.c{display:block;left:9vw;bottom:26px;width:27vw;height:27vw}.fl.d{display:block;right:8vw;bottom:20px;width:31vw;height:42vw}
   .fl{box-shadow:0 14px 28px var(--shadow),0 0 0 5px #fff,0 0 0 6px var(--rose)}
   .say{padding:calc(60px + 56vw) 0 calc(46vw + 40px)}.say h2{padding-top:0}
@@ -245,15 +247,15 @@ footer a{color:var(--gold)}
   <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
   <div class="fa f1"><img alt=""><img alt=""></div><div class="fa n1"><img alt=""><img alt=""></div>
   <div class="fa n2"><img alt=""><img alt=""></div><div class="fa f2"><img alt=""><img alt=""></div>
-  <div class="badge" id="badge"><svg viewBox="0 0 120 120"><defs><path id="cp" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#cp" textLength="278" lengthAdjust="spacing">250 SAR ✦ sizes 50–60 ✦ worn softly ✦</textPath></text></svg><b>zir</b></div>
+  <div class="badge" id="badge"><svg viewBox="0 0 120 120"><defs><path id="cp" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#cp" textLength="278" lengthAdjust="spacing">ZIR ✦ MODEST ✦ ABAYAS ✦ </textPath></text></svg><b>zir</b></div>
   <div class="arch" id="arch">
-    <img class="on" src="img/crops/hero-polka.jpg" alt="ZIR polka abaya"><img src="img/crops/hero-floral.jpg" alt="Spring floral abaya"><img src="img/crops/hero-block.jpg" alt="Colour-block abaya"><img src="img/crops/hero-linen.jpg" alt="Yellow linen abaya, seen from behind" style="object-position:50% 72%">
+    <img class="on" src="img/new/n-blazer.jpg" alt="Black blazer abaya with an ivory collar, seated on a carved bench"><img src="img/new/n-polka.jpg" alt="Polka abaya with a scarf flying in the wind"><img src="img/new/n-floral.jpg" alt="Spring floral abaya in sheer navy"><img src="img/new/n-linen.jpg" alt="Yellow linen abaya with a notched collar"><img src="img/new/n-block.jpg" alt="Black and ivory colour-block abaya in a boutique">
   </div>
-  <div class="ph on"><h1>Details that <em>complete</em> her.</h1><p class="ar">تفاصيل تكمّل طلّتك</p></div>
-  <div class="ph"><h1>Sizes <em>50 to 60.</em></h1><p>More sizes, so every woman finds hers.</p></div>
-  <div class="ph"><h1>One price. <em>250 SAR.</em></h1><p>Every abaya, no surprises.</p></div>
-  <div class="ph"><h1>Cut to <em>flow.</em></h1><p>The yellow linen, seen from behind.</p></div>
-  <div class="ph light"><h1>Worn with <em style="color:#fff">certainty.</em></h1><p class="ar">زر</p></div>
+  <div class="ph on"><span class="kick">The Blazer Abaya</span><h1>Tailored, <em>but tender.</em></h1><p>An ivory collar and clean black lines. Soft power, worn quietly.</p></div>
+  <div class="ph"><span class="kick">The Polka Abaya</span><h1>Dots, <em>in the wind.</em></h1><p>Camel polka panels that move with you.</p></div>
+  <div class="ph"><span class="kick">The Spring Floral</span><h1>In full <em>bloom.</em></h1><p>Painted roses on soft, sheer navy.</p></div>
+  <div class="ph"><span class="kick">The Yellow Linen</span><h1>Butter-soft <em>mornings.</em></h1><p>Lemon linen, a notched collar and scalloped cuffs.</p></div>
+  <div class="ph light"><span class="kick">The Colour-block Abaya</span><h1>Worn with <em style="color:#fff">certainty.</em></h1><p>Black and ivory, shaped in clean panels. <span class="ar">زر</span></p></div>
 </div></section>
 
 <div class="rib"><div id="rib1"><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i><span>zir</span><i>✦</i><span class="ar">زر</span><i>✦</i><span>worn with certainty</span><i>✦</i></div></div>
@@ -270,20 +272,19 @@ footer a{color:var(--gold)}
 </section>
 
 <section class="stackS" id="stackS"><div class="stack">
-  <div class="st-num"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+  <div class="st-num"><span>01</span><span>02</span><span>03</span></div>
   <span class="sring r1"></span><span class="sring r2"></span><span class="sring r3"></span>
   <span class="sp" style="top:30%;left:9%;font-size:22px">✦</span><span class="sp" style="top:62%;right:9%;font-size:26px;animation-delay:1s">✦</span><span class="sp" style="bottom:20%;left:14%;font-size:16px;animation-delay:2s">✦</span>
-  <div class="st-top"><div class="eyebrow">The edit</div><h2>Four moods, <em>one zir.</em></h2></div>
-  <div class="L"><span>Everyday</span><span>Spring</span><span>Linen,</span><span>Polka,</span></div>
-  <div class="box"><img src="img/crops/st-blazer.jpg" alt=""><img src="img/crops/st-floral.jpg" alt=""><img src="img/crops/st-linen.jpg" alt=""><img src="img/crops/st-polka.jpg" alt=""></div>
-  <div class="R"><span>cuts that work.</span><span>flowers, worn.</span><span>for warm days.</span><span>for her day.</span></div>
+  <div class="st-top"><div class="eyebrow">The edit</div><h2>Every mood, <em>one zir.</em></h2></div>
+  <div class="L"><span>Together,</span><span>Pinstripe,</span><span>Every day,</span></div>
+  <div class="box"><img src="img/new/n-duo.jpg" alt=""><img src="img/new/n-pin.jpg" alt=""><img src="img/new/n-rack.jpg" alt=""></div>
+  <div class="R"><span>in grey &amp; camel.</span><span>quietly sharp.</span><span>one abaya.</span></div>
   <div class="st-cap">
-    <div><b>Blazer Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
-    <div><b>Spring Floral Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
-    <div><b>Yellow Linen Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
-    <div><b>Polka Abaya</b><small>250 SAR · sizes 50–60</small><a href="https://zirabaya.com/%D8%B9%D8%A8%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D9%86%D9%82%D8%A7%D8%B7/p1771985853" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Grey Cuff &amp; Polka</b><small>Two ways to wear zir</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>Pinstripe Abaya</b><small>Black panels, fine stripes</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
+    <div><b>The ZIR Collection</b><small>Five abayas on the rail</small><a href="https://zirabaya.com" target="_blank" rel="noopener">Shop</a></div>
   </div>
-  <div class="st-dots"><i></i><i></i><i></i><i></i></div>
+  <div class="st-dots"><i></i><i></i><i></i></div>
 </div></section>
 
 <section class="care" id="care">
@@ -475,7 +476,7 @@ if(!reduce){
 }
 /* ---- hero slider: one swipe / scroll / key = one slide. Background, photos and arches all move together ---- */
 (function(){
-  const PIMG=['hero-polka','hero-floral','hero-block','hero-linen','fa-cuff','fa-pin','fa-blazer','fa-gfloral'].map(n=>'img/crops/'+n+'.jpg');
+  const PIMG=['n-blazer','n-polka','n-floral','n-linen','n-block','n-pin','n-cuff','n-rackc'].map(n=>'img/new/'+n+'.jpg');
   PIMG.forEach(src=>{const im=new Image();im.src=src});
   const phs=$$('.ph',hero),aimgs=$$('.arch img'),dots=$$('.hdots i'),flanks=$$('.fa');
   let hi=-1,busy=false,lastW=0,lastA=0,tY0=0,tDone=false;
@@ -487,7 +488,7 @@ if(!reduce){
   }
   function setHero(n){
     hi=n;hero.dataset.i=n;hero.style.setProperty('--i',n);
-    const s=Math.min(n,3);
+    const s=n;
     aimgs.forEach((im,k)=>im.classList.toggle('on',k===s));
     phs.forEach((p,k)=>p.classList.toggle('on',k===n));
     dots.forEach((d,k)=>d.classList.toggle('on',k===n));
